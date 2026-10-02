@@ -26,7 +26,7 @@
 <div id="main-menu" class="screen active" style="padding: 15px; padding-bottom: 75px; text-align: center;">
   <div style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border-radius: 16px; padding: 25px 15px; box-shadow: 0 8px 20px rgba(37,99,235,0.3);">
     <h1 style="color: #facc15; font-size: 24px; margin-bottom: 5px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">🚨 Emergency Backpack</h1>
-    <p style="font-size: 12px; opacity: 0.95; margin-bottom: 15px;">Centro Interactivo de Supervivencia Sísmica</p>
+    <p style="font-size: 12px; opacity: 0.95; margin-bottom: 15px;">Centro Interactivo de Supervivencia Sísmica (San Juan)</p>
     
     <div style="background: rgba(255, 255, 255, 0.15); padding: 12px; border-radius: 10px; border: 1px dashed rgba(255, 255, 255, 0.5);">
       <h3 style="font-size: 13px; margin-bottom: 8px; color: #facc15;">🏆 Tus Insignias de Superviviente</h3>
@@ -50,4 +50,324 @@
     <h2 style="color: #dc2626; margin: 0 0 5px 0; font-size: 18px; text-align: center;">🎒 Desafío Táctico: La Mochila</h2>
     <p style="font-size: 11px; color: #4b5563; text-align: center; margin-bottom: 12px;">¡Cuidado con las trampas! Selecciona <strong>exactamente los 6 elementos vitales</strong> y descarta juguetes, celulares y golosinas:</p>
     
-    <div id="cards-c
+    <div id="cards-container" style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 15px;"></div>
+
+    <button id="check-backpack" style="width: 100%; padding: 12px; background-color: #16a34a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 13px; cursor: pointer; box-shadow: 0 4px 10px rgba(22,163,74,0.3);">✅ Validar Kit de Emergencia</button>
+  </div>
+</div>
+
+
+<!-- ========================================== -->
+<!-- PANTALLA 3: SIMULADOR CON ALARMA FUERTE    -->
+<!-- ========================================== -->
+<div id="simulator-screen" class="screen" style="padding: 15px; padding-bottom: 75px;">
+  <div id="quake-box" style="background: white; border-top: 6px solid #ea580c; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: center;">
+    <h2 style="color: #ea580c; margin: 0 0 5px 0; font-size: 18px;">🌍 Simulador Inmersivo Pro</h2>
+    <p style="font-size: 11px; color: #4b5563; margin-bottom: 12px;">Siente la alerta sísmica real y practica tus reacciones.</p>
+    
+    <div id="quake-status" style="font-size: 12px; font-weight: bold; margin: 15px 0; padding: 12px; background: #fef3c7; color: #92400e; border-radius: 8px; border: 1px solid #fde68a;">
+      ⚡ Estado: Listo para iniciar prueba
+    </div>
+
+    <button onclick="startAdvancedEarthquakeSimulation()" style="width: 100%; padding: 12px; background-color: #dc2626; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 13px; cursor: pointer; box-shadow: 0 4px 10px rgba(220,38,38,0.3);">🚨 ¡Activar Alerta Sísmica Real!</button>
+  </div>
+</div>
+
+
+<!-- ========================================== -->
+<!-- PANTALLA 4: GUÍA Y PROTOCOLOS OFICIALES    -->
+<!-- ========================================== -->
+<div id="protocol-screen" class="screen" style="padding: 15px; padding-bottom: 75px;">
+  <div style="background: white; border-top: 6px solid #16a34a; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left;">
+    <h2 style="color: #16a34a; margin: 0 0 5px 0; font-size: 18px; text-align: center;">🏫 Guía y Protocolos Oficiales</h2>
+    <p style="font-size: 10px; color: #6b7280; text-align: center; margin-bottom: 12px;">Basado en INPRES, UNICEF y Protección Civil.</p>
+    
+    <div style="font-size: 11px; color: #374151; line-height: 1.4; display: flex; flex-direction: column; gap: 8px;">
+      <div style="background: #f0fdf4; padding: 8px 10px; border-radius: 6px; border-left: 4px solid #16a34a;">
+        🏠 <strong>Antes del Sismo (Preparación):</strong> Diseña un plan de emergencia familiar y define un punto de encuentro seguro. Asegura los muebles pesados a la pared y evita colocar objetos pesados en estanterías altas. Usa cinta transparente para pegar en los vidrios de las ventanas y evitar astillas.
+      </div>
+      <div style="background: #f0fdf4; padding: 8px 10px; border-radius: 6px; border-left: 4px solid #16a34a;">
+        🛑 <strong>Durante el Sismo (Acción):</strong> 
+        <br>• <em>Si estás dentro:</em> Agáchate sobre manos y rodillas, cúbrete y agárrate debajo de un mueble pesado o mesa resistente. Aléjate de ventanas, cristales y no uses ascensores.
+        <br>• <em>Si estás en la calle:</em> Aléjate de edificios, postes, árboles y cables eléctricos.
+        <br>• <em>Si vas conduciendo:</em> Reduce la velocidad, detente en un lugar seguro lejos de puentes o cables y quédate dentro del vehículo.
+      </div>
+      <div style="background: #f0fdf4; padding: 8px 10px; border-radius: 6px; border-left: 4px solid #16a34a;">
+        ⚠️ <strong>Después del Sismo (Evaluación):</strong> Cuidado con las réplicas (siempre ocurren tras sismos grandes). Apaga sistemas eléctricos y de gas, revisa si hay heridos, fugas o daños estructurales antes de reingresar. Infórmate por radio u fuentes oficiales y evita correr o gritar.
+      </div>
+      <div style="background: #fef2f2; padding: 8px 10px; border-radius: 6px; border-left: 4px solid #dc2626;">
+        🏚️ <strong>Vulnerabilidad en Adobe o Antiguas:</strong> Muy comunes en zonas rurales o tradicionales. Al no tener estructura sismorresistente, los techos de barro y paredes colapsan rápido. Si el sismo es violento y tienes salida directa libre, evacua de inmediato en los primeros segundos.
+      </div>
+    </div>
+    
+    <button onclick="unlockProtocolBadge(); switchScreen('main-menu');" style="width: 100%; margin-top: 15px; padding: 10px; background-color: #16a34a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer;">✅ Marcar Leído y Guardar Insignia</button>
+  </div>
+</div>
+
+
+<!-- ========================================== -->
+<!-- PANTALLA 5: PLAN FAMILIAR ESTRATÉGICO      -->
+<!-- ========================================== -->
+<div id="plan-screen" class="screen" style="padding: 15px; padding-bottom: 75px;">
+  <div style="background: white; border-top: 6px solid #9333ea; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left;">
+    <h2 style="color: #9333ea; margin: 0 0 5px 0; font-size: 18px; text-align: center;">📋 Plan Familiar Estratégico</h2>
+    <p style="font-size: 10px; color: #6b7280; text-align: center; margin-bottom: 12px;">Elabora tu plan familiar en cuatro pasos clave.</p>
+    
+    <div style="font-size: 11px; color: #374151; line-height: 1.4; display: flex; flex-direction: column; gap: 8px;">
+      <div style="background: #faf5ff; padding: 8px 10px; border-radius: 6px; border-left: 4px solid #9333ea;">
+        1. <strong>Detecta y reduce riesgos:</strong> Identifica zonas frágiles en casa y fija objetos pesados.
+      </div>
+      <div style="background: #faf5ff; padding: 8px 10px; border-radius: 6px; border-left: 4px solid #9333ea;">
+        2. <strong>Diseña rutas de evacuación:</strong> Mantén pasillos y salidas libres de obstáculos.
+      </div>
+      <div style="background: #faf5ff; padding: 8px 10px; border-radius: 6px; border-left: 4px solid #9333ea;">
+        3. <strong>Punto de encuentro seguro:</strong> Define una plaza o área abierta externa donde toda la familia deba reagruparse.
+      </div>
+      <div style="background: #faf5ff; padding: 8px 10px; border-radius: 6px; border-left: 4px solid #9333ea;">
+        4. <strong>Roles y contactos:</strong> Asigna quién corta servicios y ten números de emergencia y un contacto externo anotados.
+      </div>
+    </div>
+    
+    <button onclick="unlockPlanBadge(); switchScreen('main-menu');" style="width: 100%; margin-top: 15px; padding: 10px; background-color: #9333ea; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer;">✅ Guardar Plan e Insignia</button>
+  </div>
+</div>
+
+<style>
+  .screen { display: none; }
+  .screen.active { display: block; }
+  .is-shaking { animation: shake 0.5s infinite; }
+  @keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+</style>
+
+<!-- ========================================== -->
+<!-- LÓGICA DE CONTROL JAVASCRIPT               -->
+<!-- ========================================== -->
+<script>
+  function switchScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(screen => {
+      screen.classList.remove('active');
+    });
+    const targetScreen = document.getElementById(screenId);
+    if (targetScreen) {
+      targetScreen.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  }
+
+  function unlockProtocolBadge() {
+    const badge = document.getElementById('badge-protocol');
+    if(badge) {
+      badge.style.opacity = '1';
+      badge.style.filter = 'none';
+    }
+    playSuccessSound();
+  }
+
+  function unlockPlanBadge() {
+    const badge = document.getElementById('badge-plan');
+    if(badge) {
+      badge.style.opacity = '1';
+      badge.style.filter = 'none';
+    }
+    playSuccessSound();
+  }
+
+  const backpackItems = [
+    { id: 'radio', text: '📻 Radio portátil a pilas', vital: true },
+    { id: 'botiquin', text: '🩹 Botiquín de primeros auxilios', vital: true },
+    { id: 'agua', text: '💧 Botella de agua embotellada', vital: true },
+    { id: 'linterna', text: '🔦 Linterna y pilas de repuesto', vital: true },
+    { id: 'documentos', text: '🪪 Documentos de identidad', vital: true },
+    { id: 'remedios', text: '💊 Medicamentos esenciales', vital: true },
+    { id: 'celular', text: '📱 Celular (se saturan redes)', vital: false },
+    { id: 'juguete', text: '🤖 Juguete o autito favorito', vital: false },
+    { id: 'golosina', text: '🍫 Golosinas o chocolates', vital: false },
+    { id: 'consola', text: '🎮 Consola de videojuegos', vital: false },
+    { id: 'peluche', text: '🧸 Peluche gigante', vital: false },
+    { id: 'maquillaje', text: '💄 Maquillaje o accesorios', vital: false }
+  ];
+
+  function loadRandomizedBackpack() {
+    const container = document.getElementById('cards-container');
+    if (!container) return;
+    container.innerHTML = '';
+    const shuffled = [...backpackItems].sort(() => Math.random() - 0.5);
+
+    shuffled.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.setAttribute('data-item', item.id);
+      div.setAttribute('data-vital', item.vital);
+      div.style.cssText = 'padding: 10px 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; cursor: pointer; text-align: left; font-size: 12px; font-weight: 500; transition: all 0.2s;';
+      div.textContent = item.text;
+
+      div.addEventListener('click', () => {
+        div.classList.toggle('selected');
+        if (div.classList.contains('selected')) {
+          div.style.background = '#dcfce7';
+          div.style.border = '2px solid #16a34a';
+          div.style.color = '#166534';
+        } else {
+          div.style.background = '#f8fafc';
+          div.style.border = '1px solid #cbd5e1';
+          div.style.color = '#334155';
+        }
+      });
+      container.appendChild(div);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadRandomizedBackpack();
+    const checkBtn = document.getElementById('check-backpack');
+    if (checkBtn) {
+      checkBtn.addEventListener('click', () => {
+        const cards = document.querySelectorAll('#cards-container .card');
+        let correctCount = 0, totalSelected = 0, hasDistractor = false;
+
+        cards.forEach(card => {
+          if (card.classList.contains('selected')) {
+            totalSelected++;
+            if (card.getAttribute('data-vital') === 'true') correctCount++;
+            else hasDistractor = true;
+          }
+        });
+
+        if (correctCount === 6 && totalSelected === 6 && !hasDistractor) {
+          playSuccessSound();
+          const badge = document.getElementById('badge-backpack');
+          if(badge) {
+            badge.style.opacity = '1';
+            badge.style.filter = 'none';
+          }
+          alert("¡Impecable! Kit de mochila completado sin caer en trampas 🎒");
+        } else {
+          playErrorSound();
+          alert("¡Cuidado! Seleccionaste juguetes, celulares o elementos incorrectos. Debes elegir exactamente los 6 vitales. ¡Inténtalo de nuevo!");
+          loadRandomizedBackpack();
+        }
+      });
+    }
+  });
+
+  function playEarthquakeSiren() {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      let time = audioCtx.currentTime;
+      
+      for (let i = 0; i < 6; i++) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        
+        osc.frequency.setValueAtTime(400, time);
+        osc.frequency.linearRampToValueAtTime(850, time + 0.25);
+        
+        gain.gain.setValueAtTime(0.5, time);
+        gain.gain.exponentialRampToValueAtTime(0.01, time + 0.3);
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.start(time);
+        osc.stop(time + 0.3);
+        time += 0.35;
+      }
+    } catch (e) {
+      console.log("Audio no soportado.");
+    }
+  }
+
+  function playSuccessSound() {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+      osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.15);
+      osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.3);
+      gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.6);
+    } catch (e) {}
+  }
+
+  function playErrorSound() {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+      osc.frequency.setValueAtTime(120, audioCtx.currentTime + 0.2);
+      gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.4);
+    } catch (e) {}
+  }
+
+  function startAdvancedEarthquakeSimulation() {
+    const quakeBox = document.getElementById('quake-box');
+    const quakeStatus = document.getElementById('quake-status');
+    if(quakeBox) quakeBox.classList.add('is-shaking');
+
+    if ("vibrate" in navigator) navigator.vibrate([500, 200, 500, 200, 800, 200, 800]);
+
+    if(quakeStatus) {
+      quakeStatus.style.background = "#fee2e2";
+      quakeStatus.style.color = "#991b1b";
+      quakeStatus.style.border = "1px solid #fecaca";
+      quakeStatus.textContent = "🚨 ¡ALERTA SÍSMICA! 1/3: ¡Agáchate y cúbrete fuerte!";
+    }
+    playEarthquakeSiren();
+
+    setTimeout(() => {
+      if(quakeStatus) quakeStatus.textContent = "⚠️ ¡MOMENTO CRÍTICO! 2/3: ¡Aférrate y protege tu cabeza!";
+      playEarthquakeSiren();
+      if ("vibrate" in navigator) navigator.vibrate([800, 200, 800]);
+    }, 3500);
+
+    setTimeout(() => {
+      if(quakeStatus) quakeStatus.textContent = "🛑 3/3: El sismo cede, mantén la calma y evalúa.";
+      playSuccessSound();
+    }, 7000);
+
+    setTimeout(() => {
+      if(quakeBox) quakeBox.classList.remove('is-shaking');
+      if(quakeStatus) {
+        quakeStatus.style.background = "#dcfce7";
+        quakeStatus.style.color = "#166534";
+        quakeStatus.style.border = "1px solid #bbf7d0";
+        quakeStatus.textContent = "✨ ¡Simulacro completado con éxito!";
+      }
+      playSuccessSound();
+      
+      const badge = document.getElementById('badge-quake');
+      if(badge) {
+        badge.style.opacity = '1';
+        badge.style.filter = 'none';
+      }
+
+      if ("vibrate" in navigator) navigator.vibrate(0);
+    }, 10000);
+  }
+</script>
