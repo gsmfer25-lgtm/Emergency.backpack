@@ -1,0 +1,53 @@
+<!-- ========================================== -->
+<!-- BARRA DE NAVEGACIÓN INFERIOR PROFESIONAL   -->
+<!-- ========================================== -->
+<div style="position: fixed; bottom: 0; left: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000; box-shadow: 0 -4px 15px rgba(0,0,0,0.4); border-top: 2px solid #334155;">
+  <button onclick="switchScreen('main-menu')" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; text-align: center;">
+    🏠<br><span style="font-size: 9px; opacity: 0.9; font-weight: bold;">Inicio</span>
+  </button>
+  <button onclick="switchScreen('game-screen')" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; text-align: center;">
+    🎒<br><span style="font-size: 9px; opacity: 0.9; font-weight: bold;">Mochila</span>
+  </button>
+  <button onclick="switchScreen('simulator-screen')" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; text-align: center;">
+    🌍<br><span style="font-size: 9px; opacity: 0.9; font-weight: bold;">Simulador</span>
+  </button>
+  <button onclick="switchScreen('protocol-screen')" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; text-align: center;">
+    🏫<br><span style="font-size: 9px; opacity: 0.9; font-weight: bold;">Guía</span>
+  </button>
+  <button onclick="switchScreen('plan-screen')" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; text-align: center;">
+    📋<br><span style="font-size: 9px; opacity: 0.9; font-weight: bold;">Plan</span>
+  </button>
+</div>
+
+
+<!-- ========================================== -->
+<!-- PANTALLA 1: INICIO DINÁMICO                -->
+<!-- ========================================== -->
+<div id="main-menu" class="screen active" style="padding: 15px; padding-bottom: 75px; text-align: center;">
+  <div style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border-radius: 16px; padding: 25px 15px; box-shadow: 0 8px 20px rgba(37,99,235,0.3);">
+    <h1 style="color: #facc15; font-size: 24px; margin-bottom: 5px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">🚨 Emergency Backpack</h1>
+    <p style="font-size: 12px; opacity: 0.95; margin-bottom: 15px;">Centro Interactivo de Supervivencia Sísmica</p>
+    
+    <div style="background: rgba(255, 255, 255, 0.15); padding: 12px; border-radius: 10px; border: 1px dashed rgba(255, 255, 255, 0.5);">
+      <h3 style="font-size: 13px; margin-bottom: 8px; color: #facc15;">🏆 Tus Insignias de Superviviente</h3>
+      <div id="badges-container" style="display: flex; justify-content: center; gap: 15px; font-size: 22px;">
+        <span id="badge-backpack" title="Mochila" style="opacity: 0.3; filter: grayscale(1);">🎒</span>
+        <span id="badge-quake" title="Simulador" style="opacity: 0.3; filter: grayscale(1);">🛡️</span>
+        <span id="badge-protocol" title="Guía" style="opacity: 0.3; filter: grayscale(1);">🏫</span>
+        <span id="badge-plan" title="Plan" style="opacity: 0.3; filter: grayscale(1);">📋</span>
+      </div>
+    </div>
+    <div style="margin-top: 15px; font-size: 10px; opacity: 0.8;">Creado por <strong>Alejandro Fernández</strong></div>
+  </div>
+</div>
+
+
+<!-- ========================================== -->
+<!-- PANTALLA 2: MOCHILA CON TRAMPAS Y COLORES  -->
+<!-- ========================================== -->
+<div id="game-screen" class="screen" style="padding: 15px; padding-bottom: 75px;">
+  <div style="background: white; border-top: 6px solid #dc2626; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+    <h2 style="color: #dc2626; margin: 0 0 5px 0; font-size: 18px; text-align: center;">🎒 Desafío Táctico: La Mochila</h2>
+    <p style="font-size: 11px; color: #4b5563; text-align: center; margin-bottom: 12px;">¡Cuidado con las trampas! Selecciona <strong>exactamente los 6 elementos vitales</strong> y descarta juguetes, celulares y golosinas:</p>
+    
+    <div id="cards-c
