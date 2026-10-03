@@ -1,21 +1,21 @@
 <!-- ========================================== -->
 <!-- BARRA DE NAVEGACIÓN INFERIOR PROFESIONAL   -->
 <!-- ========================================== -->
-<div style="position: fixed; bottom: 0; left: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 10px 0; z-index: 1000; box-shadow: 0 -4px 15px rgba(0,0,0,0.4); border-top: 2px solid #334155;">
-  <button onclick="switchScreen('main-menu')" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer; text-align: center;">
-    🏠<br><span style="font-size: 11px; opacity: 0.9; font-weight: bold;">Inicio</span>
+<div style="position: fixed; bottom: 0; left: 0; width: 100%; background: #0f172a; display: flex; justify-content: space-around; padding: 12px 0; z-index: 1000; box-shadow: 0 -4px 15px rgba(0,0,0,0.4); border-top: 2px solid #334155;">
+  <button onclick="switchScreen('main-menu')" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer; text-align: center; flex: 1;">
+    🏠<br><span style="font-size: 13px; opacity: 0.95; font-weight: bold;">Inicio</span>
   </button>
-  <button onclick="switchScreen('game-screen')" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer; text-align: center;">
-    🎒<br><span style="font-size: 11px; opacity: 0.9; font-weight: bold;">Mochila</span>
+  <button onclick="switchScreen('game-screen')" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer; text-align: center; flex: 1;">
+    🎒<br><span style="font-size: 13px; opacity: 0.95; font-weight: bold;">Mochila</span>
   </button>
-  <button onclick="switchScreen('simulator-screen')" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer; text-align: center;">
-    🌍<br><span style="font-size: 11px; opacity: 0.9; font-weight: bold;">Simulador</span>
+  <button onclick="switchScreen('simulator-screen')" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer; text-align: center; flex: 1;">
+    🌍<br><span style="font-size: 13px; opacity: 0.95; font-weight: bold;">Simulador</span>
   </button>
-  <button onclick="switchScreen('protocol-screen')" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer; text-align: center;">
-    🏫<br><span style="font-size: 11px; opacity: 0.9; font-weight: bold;">Guía</span>
+  <button onclick="switchScreen('protocol-screen')" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer; text-align: center; flex: 1;">
+    🏫<br><span style="font-size: 13px; opacity: 0.95; font-weight: bold;">Guía</span>
   </button>
-  <button onclick="switchScreen('plan-screen')" style="background: none; border: none; color: white; font-size: 20px; cursor: pointer; text-align: center;">
-    📋<br><span style="font-size: 11px; opacity: 0.9; font-weight: bold;">Plan</span>
+  <button onclick="switchScreen('plan-screen')" style="background: none; border: none; color: white; font-size: 28px; cursor: pointer; text-align: center; flex: 1;">
+    📋<br><span style="font-size: 13px; opacity: 0.95; font-weight: bold;">Plan</span>
   </button>
 </div>
 
@@ -29,7 +29,7 @@
   }
   .screen {
     display: none;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 90px);
     overflow-y: auto;
     box-sizing: border-box;
     padding: 20px;
@@ -41,19 +41,35 @@
   .screen.active {
     display: flex;
   }
+  @keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
+  .is-shaking {
+    animation: shake 0.5s infinite;
+  }
 </style>
 
 <!-- ========================================== -->
 <!-- PANTALLA 1: INICIO DINÁMICO                -->
 <!-- ========================================== -->
 <div id="main-menu" class="screen active" style="text-align: center;">
-  <div style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border-radius: 16px; padding: 40px 20px; box-shadow: 0 8px 20px rgba(37,99,235,0.3); width: 100%;">
-    <h1 style="color: #facc15; font-size: 32px; margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">🚨 Emergency Backpack</h1>
-    <p style="font-size: 16px; opacity: 0.95; margin-bottom: 25px;">Centro Interactivo de Supervivencia Sísmica (San Juan)</p>
+  <div style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border-radius: 16px; padding: 30px 20px; box-shadow: 0 8px 20px rgba(37,99,235,0.3); width: 100%; box-sizing: border-box;">
+    <h1 style="color: #facc15; font-size: 28px; margin-bottom: 10px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">🚨 Emergency Backpack</h1>
+    <p style="font-size: 15px; opacity: 0.95; margin-bottom: 20px;">Centro Interactivo de Supervivencia Sísmica (San Juan)</p>
     
-    <div style="background: rgba(255, 255, 255, 0.15); padding: 20px; border-radius: 12px; border: 1px dashed rgba(255, 255, 255, 0.5);">
-      <h3 style="font-size: 18px; margin-bottom: 15px; color: #facc15;">🏆 Tus Insignias de Superviviente</h3>
-      <div id="badges-container" style="display: flex; justify-content: center; gap: 20px; font-size: 32px;">
+    <div style="background: rgba(255, 255, 255, 0.15); padding: 15px; border-radius: 12px; border: 1px dashed rgba(255, 255, 255, 0.5);">
+      <h3 style="font-size: 16px; margin-bottom: 12px; color: #facc15;">🏆 Tus Insignias de Superviviente</h3>
+      <div id="badges-container" style="display: flex; justify-content: center; gap: 15px; font-size: 36px;">
         <span id="badge-backpack" title="Mochila" style="opacity: 0.3; filter: grayscale(1);">🎒</span>
         <span id="badge-quake" title="Simulador" style="opacity: 0.3; filter: grayscale(1);">🛡️</span>
         <span id="badge-protocol" title="Guía" style="opacity: 0.3; filter: grayscale(1);">🏫</span>
@@ -61,10 +77,10 @@
       </div>
     </div>
     
-    <div style="margin-top: 25px; font-size: 14px; opacity: 0.8;">Creado por <strong>Alejandro Fernández</strong></div>
+    <div style="margin-top: 20px; font-size: 14px; opacity: 0.8;">Creado por <strong>Alejandro Fernández</strong></div>
 
     <!-- Botón Cafecito -->
-    <div style="margin-top: 25px;">
+    <div style="margin-top: 20px;">
       <a href="https://cafecito.app" target="_blank" style="display: inline-block; background-color: #ff5f5f; color: white; padding: 12px 24px; border-radius: 24px; font-size: 14px; font-weight: bold; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
         ☕ ¡Invítame un Cafecito!
       </a>
@@ -76,29 +92,29 @@
 <!-- PANTALLA 2: MOCHILA CON TRAMPAS Y COLORES  -->
 <!-- ========================================== -->
 <div id="game-screen" class="screen">
-  <div style="background: white; border-top: 8px solid #dc2626; border-radius: 16px; padding: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); width: 100%;">
-    <h2 style="color: #dc2626; margin: 0 0 10px 0; font-size: 24px; text-align: center;">🎒 Desafío Táctico: La Mochila</h2>
-    <p style="font-size: 16px; color: #4b5563; text-align: center; margin-bottom: 20px;">¡Cuidado con las trampas! Selecciona <strong>exactamente los 6 elementos vitales</strong> y descarta juguetes, celulares y golosinas:</p>
+  <div style="background: white; border-top: 8px solid #dc2626; border-radius: 16px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); width: 100%; box-sizing: border-box;">
+    <h2 style="color: #dc2626; margin: 0 0 10px 0; font-size: 22px; text-align: center;">🎒 Desafío Táctico: La Mochila</h2>
+    <p style="font-size: 15px; color: #4b5563; text-align: center; margin-bottom: 15px;">¡Cuidado con las trampas! Selecciona <strong>exactamente los 6 elementos vitales</strong> y descarta juguetes, celulares y golosinas:</p>
     
-    <div id="cards-container" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 25px;"></div>
+    <div id="cards-container" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;"></div>
 
-    <button id="check-backpack" style="width: 100%; padding: 18px; background-color: #16a34a; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(22,163,74,0.3);">✅ Validar Kit de Emergencia</button>
+    <button id="check-backpack" style="width: 100%; padding: 16px; background-color: #16a34a; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(22,163,74,0.3);">✅ Validar Kit de Emergencia</button>
   </div>
 </div>
 
 <!-- ========================================== -->
-<!-- PANTALLA 3: SIMULADOR CON ALARMA FUERTE    -->
+<!-- PANTALLA 3: SIMULADOR CON ALARMA Y VOZ     -->
 <!-- ========================================== -->
 <div id="simulator-screen" class="screen">
-  <div id="quake-box" style="background: white; border-top: 8px solid #ea580c; border-radius: 16px; padding: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: center; width: 100%;">
-    <h2 style="color: #ea580c; margin: 0 0 10px 0; font-size: 24px;">🌍 Simulador Inmersivo Pro</h2>
-    <p style="font-size: 16px; color: #4b5563; margin-bottom: 20px;">Siente la alerta sísmica real y practica tus reacciones.</p>
+  <div id="quake-box" style="background: white; border-top: 8px solid #ea580c; border-radius: 16px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: center; width: 100%; box-sizing: border-box;">
+    <h2 style="color: #ea580c; margin: 0 0 10px 0; font-size: 22px;">🌍 Simulador Inmersivo Pro</h2>
+    <p style="font-size: 15px; color: #4b5563; margin-bottom: 15px;">Siente la alerta sísmica real y practica tus reacciones.</p>
     
-    <div id="quake-status" style="font-size: 16px; font-weight: bold; margin: 25px 0; padding: 20px; background: #fef3c7; color: #92400e; border-radius: 10px; border: 1px solid #fde68a;">
+    <div id="quake-status" style="font-size: 15px; font-weight: bold; margin: 20px 0; padding: 16px; background: #fef3c7; color: #92400e; border-radius: 10px; border: 1px solid #fde68a;">
       ⚡ Estado: Listo para iniciar prueba
     </div>
 
-    <button onclick="startAdvancedEarthquakeSimulation()" style="width: 100%; padding: 18px; background-color: #dc2626; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(220,38,38,0.3);">🚨 ¡Activar Alerta Sísmica Real!</button>
+    <button onclick="startAdvancedEarthquakeSimulation()" style="width: 100%; padding: 16px; background-color: #dc2626; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; box-shadow: 0 4px 10px rgba(220,38,38,0.3);">🚨 ¡Activar Alerta Sísmica Real!</button>
   </div>
 </div>
 
@@ -106,32 +122,31 @@
 <!-- PANTALLA 4: GUÍA Y PROTOCOLOS OFICIALES    -->
 <!-- ========================================== -->
 <div id="protocol-screen" class="screen">
-  <div style="background: white; border-top: 8px solid #16a34a; border-radius: 16px; padding: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left; width: 100%;">
-    <h2 style="color: #16a34a; margin: 0 0 15px 0; font-size: 24px; text-align: center;">🏫 Guía y Protocolos Oficiales</h2>
-    <p style="font-size: 14px; color: #6b7280; text-align: center; margin-bottom: 20px;">Basado en INPRES, UNICEF y Protección Civil.</p>
+  <div style="background: white; border-top: 8px solid #16a34a; border-radius: 16px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left; width: 100%; box-sizing: border-box;">
+    <h2 style="color: #16a34a; margin: 0 0 12px 0; font-size: 22px; text-align: center;">🏫 Guía y Protocolos Oficiales</h2>
+    <p style="font-size: 14px; color: #6b7280; text-align: center; margin-bottom: 15px;">Basado en INPRES, UNICEF y Protección Civil.</p>
     
-    <div style="font-size: 16px; color: #374151; line-height: 1.6; display: flex; flex-direction: column; gap: 15px;">
-      <div style="background: #f0fdf4; padding: 16px; border-radius: 10px; border-left: 6px solid #16a34a;">
-        🏠 <strong>Antes del Sismo (Preparación):</strong> Diseña un plan de emergencia familiar y define un punto de encuentro seguro. Asegura los muebles pesados a la pared y evita colocar objetos pesados en estanterías altas. Usa cinta transparente para pegar en los vidrios de las ventanas y evitar astillas.
+    <div style="font-size: 15px; color: #374151; line-height: 1.5; display: flex; flex-direction: column; gap: 12px;">
+      <div style="background: #f0fdf4; padding: 14px; border-radius: 10px; border-left: 6px solid #16a34a;">
+        🏠 <strong>Antes del Sismo (Preparación):</strong> Diseña un plan familiar, asegura muebles pesados a la pared y protege vidrios con cinta.
       </div>
-      <div style="background: #f0fdf4; padding: 16px; border-radius: 10px; border-left: 6px solid #16a34a;">
+      <div style="background: #f0fdf4; padding: 14px; border-radius: 10px; border-left: 6px solid #16a34a;">
         🛑 <strong>Durante el Sismo (Acción):</strong> 
-        <br>• <em>Si estás dentro:</em> Agáchate sobre manos y rodillas, cúbrete y agárrate debajo de un mueble pesado o mesa resistente. Aléjate de ventanas, cristales y no uses ascensores.
-        <br>• <em>Si estás en la calle:</em> Aléjate de edificios, postes, árboles y cables eléctricos.
-        <br>• <em>Si vas conduciendo:</em> Reduce la velocidad, detente en un lugar seguro lejos de puentes o cables y quédate dentro del vehículo.
+        <br>• <em>Dentro:</em> Agáchate, cúbrete y agárrate debajo de una mesa resistente. Aléjate de ventanas.
+        <br>• <em>Fuera:</em> Aléjate de edificios, postes y cables eléctricos.
       </div>
-      <div style="background: #f0fdf4; padding: 16px; border-radius: 10px; border-left: 6px solid #16a34a;">
-        ⚠️ <strong>Después del Sismo (Evaluación):</strong> Cuidado con las réplicas (siempre ocurren tras sismos grandes). Apaga sistemas eléctricos y de gas, revisa si hay heridos, fugas o daños estructurales antes de reingresar. Infórmate por radio u fuentes oficiales y evita correr o gritar.
+      <div style="background: #f0fdf4; padding: 14px; border-radius: 10px; border-left: 6px solid #16a34a;">
+        ⚠️ <strong>Después del Sismo:</strong> Cuidado con réplicas. Apaga gas y electricidad si hay daños y mantente informado por fuentes oficiales.
       </div>
-      <div style="background: #fef2f2; padding: 16px; border-radius: 10px; border-left: 6px solid #dc2626;">
-        🏚️ <strong>Vulnerabilidad en Adobe o Antiguas:</strong> Muy comunes en zonas rurales o tradicionales. Al no tener estructura sismorresistente, los techos de barro y paredes colapsan rápido. Si el sismo es violento y tienes salida directa libre, evacua de inmediato en los primeros segundos.
+      <div style="background: #fef2f2; padding: 14px; border-radius: 10px; border-left: 6px solid #dc2626;">
+        🏚️ <strong>Vulnerabilidad en Adobe:</strong> Si estás en construcciones precarias y el sismo es violento, evacua de inmediato en los primeros segundos.
       </div>
-      <div style="background: #eff6ff; padding: 16px; border-radius: 10px; border-left: 6px solid #2563eb;">
-        📍 <strong>Puntos de Encuentro Seguros en San Juan:</strong> Plazas principales (Plaza 25 de Mayo, Plaza Hipólito Yrigoyen / de la Joroba, Parque de Mayo) y espacios abiertos libres de edificios altos o tendido eléctrico identificados por Defensa Civil.
+      <div style="background: #eff6ff; padding: 14px; border-radius: 10px; border-left: 6px solid #2563eb;">
+        📍 <strong>Puntos de Encuentro en San Juan:</strong> Plazas principales (25 de Mayo, Joroba, Parque de Mayo) y espacios abiertos seguros.
       </div>
     </div>
     
-    <button onclick="unlockProtocolBadge(); switchScreen('main-menu');" style="width: 100%; margin-top: 25px; padding: 18px; background-color: #16a34a; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer;">✅ Marcar Leído y Guardar Insignia</button>
+    <button onclick="unlockProtocolBadge(); switchScreen('main-menu');" style="width: 100%; margin-top: 20px; padding: 16px; background-color: #16a34a; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer;">✅ Marcar Leído y Guardar Insignia</button>
   </div>
 </div>
 
@@ -139,26 +154,26 @@
 <!-- PANTALLA 5: PLAN FAMILIAR (COMPLETO)       -->
 <!-- ========================================== -->
 <div id="plan-screen" class="screen">
-  <div style="background: white; border-top: 8px solid #9333ea; border-radius: 16px; padding: 25px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left; width: 100%;">
-    <h2 style="color: #9333ea; margin: 0 0 15px 0; font-size: 24px; text-align: center;">📋 Plan Familiar Estratégico</h2>
-    <p style="font-size: 14px; color: #6b7280; text-align: center; margin-bottom: 20px;">Elabora tu plan familiar en cuatro pasos clave.</p>
+  <div style="background: white; border-top: 8px solid #9333ea; border-radius: 16px; padding: 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left; width: 100%; box-sizing: border-box;">
+    <h2 style="color: #9333ea; margin: 0 0 12px 0; font-size: 22px; text-align: center;">📋 Plan Familiar Estratégico</h2>
+    <p style="font-size: 14px; color: #6b7280; text-align: center; margin-bottom: 15px;">Elabora tu plan familiar en cuatro pasos clave.</p>
     
-    <div style="font-size: 16px; color: #374151; line-height: 1.6; display: flex; flex-direction: column; gap: 15px;">
-      <div style="background: #faf5ff; padding: 16px; border-radius: 10px; border-left: 6px solid #9333ea;">
-        1. <strong>Detecta y reduce riesgos:</strong> Identifica zonas frágiles en casa y fija objetos pesados.
+    <div style="font-size: 15px; color: #374151; line-height: 1.5; display: flex; flex-direction: column; gap: 12px;">
+      <div style="background: #faf5ff; padding: 14px; border-radius: 10px; border-left: 6px solid #9333ea;">
+        1. <strong>Detecta riesgos:</strong> Identifica zonas frágiles y fija objetos pesados.
       </div>
-      <div style="background: #faf5ff; padding: 16px; border-radius: 10px; border-left: 6px solid #9333ea;">
-        2. <strong>Diseña rutas de evacuación:</strong> Mantén pasillos y salidas libres de obstáculos.
+      <div style="background: #faf5ff; padding: 14px; border-radius: 10px; border-left: 6px solid #9333ea;">
+        2. <strong>Rutas de evacuación:</strong> Mantén pasillos y salidas libres de obstáculos.
       </div>
-      <div style="background: #faf5ff; padding: 16px; border-radius: 10px; border-left: 6px solid #9333ea;">
-        3. <strong>Punto de encuentro seguro:</strong> Define una plaza o área abierta externa donde toda la familia deba reagruparse.
+      <div style="background: #faf5ff; padding: 14px; border-radius: 10px; border-left: 6px solid #9333ea;">
+        3. <strong>Punto de encuentro:</strong> Define una plaza o área abierta externa de reunión.
       </div>
-      <div style="background: #faf5ff; padding: 16px; border-radius: 10px; border-left: 6px solid #9333ea;">
-        4. <strong>Roles y contactos:</strong> Asigna quién corta servicios y ten números de emergencia y un contacto externo anotados.
+      <div style="background: #faf5ff; padding: 14px; border-radius: 10px; border-left: 6px solid #9333ea;">
+        4. <strong>Roles y contactos:</strong> Asigna responsabilidades y números de emergencia.
       </div>
     </div>
     
-    <button onclick="unlockPlanBadge(); switchScreen('main-menu');" style="width: 100%; margin-top: 25px; padding: 18px; background-color: #9333ea; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer;">✅ Guardar Plan e Insignia</button>
+    <button onclick="unlockPlanBadge(); switchScreen('main-menu');" style="width: 100%; margin-top: 20px; padding: 16px; background-color: #9333ea; color: white; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer;">✅ Guardar Plan e Insignia</button>
   </div>
 </div>
 
@@ -191,6 +206,17 @@
     playSuccessSound();
   }
 
+  function speakText(text) {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'es-AR';
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+  }
+
   const backpackItems = [
     { id: 'radio', text: '📻 Radio portátil a pilas', vital: true },
     { id: 'botiquin', text: '🩹 Botiquín de primeros auxilios', vital: true },
@@ -217,7 +243,7 @@
       div.className = 'card';
       div.setAttribute('data-item', item.id);
       div.setAttribute('data-vital', item.vital);
-      div.style.cssText = 'padding: 16px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; cursor: pointer; text-align: left; font-size: 16px; font-weight: 500; transition: all 0.2s;';
+      div.style.cssText = 'padding: 16px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px; cursor: pointer; text-align: left; font-size: 15px; font-weight: 500; transition: all 0.2s;';
       div.textContent = item.text;
 
       div.addEventListener('click', () => {
@@ -260,7 +286,7 @@
           alert("¡Impecable! Kit de mochila completado sin caer en trampas 🎒");
         } else {
           playErrorSound();
-          alert("¡Cuidado! Seleccionaste juguetes, celulares o elementos incorrectos. Debes elegir exactamente los 6 vitales. ¡Inténtalo de nuevo!");
+          alert("¡Cuidado! Seleccionaste elementos incorrectos. Debes elegir exactamente los 6 vitales. ¡Inténtalo de nuevo!");
           loadRandomizedBackpack();
         }
       });
@@ -341,17 +367,21 @@
     quakeStatus.style.color = "#991b1b";
     quakeStatus.style.border = "1px solid #fecaca";
     quakeStatus.textContent = "🚨 ¡ALERTA SÍSMICA! 1/3: ¡Agáchate y cúbrete fuerte!";
+    
     playEarthquakeSiren();
+    speakText("Alerta simulacro. Terremoto en curso. Agáchate y cúbrete.");
 
     setTimeout(() => {
       quakeStatus.textContent = "⚠️ ¡MOMENTO CRÍTICO! 2/3: ¡Aférrate y protege tu cabeza!";
       playEarthquakeSiren();
+      speakText("Atención. Mantén la calma y protégete.");
       if ("vibrate" in navigator) navigator.vibrate([800, 200, 800]);
     }, 3500);
 
     setTimeout(() => {
       quakeStatus.textContent = "🛑 3/3: El sismo cede, mantén la calma y evalúa.";
       playSuccessSound();
+      speakText("El sismo ha cesado. Evalúa la situación.");
     }, 7000);
 
     setTimeout(() => {
