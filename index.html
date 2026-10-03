@@ -19,12 +19,33 @@
   </button>
 </div>
 
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+  .screen {
+    display: none;
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .screen.active {
+    display: flex;
+  }
+</style>
 
 <!-- ========================================== -->
 <!-- PANTALLA 1: INICIO DINÁMICO                -->
 <!-- ========================================== -->
-<div id="main-menu" class="screen active" style="padding: 15px; padding-bottom: 75px; text-align: center;">
-  <div style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border-radius: 16px; padding: 25px 15px; box-shadow: 0 8px 20px rgba(37,99,235,0.3);">
+<div id="main-menu" class="screen active" style="text-align: center;">
+  <div style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border-radius: 16px; padding: 25px 15px; box-shadow: 0 8px 20px rgba(37,99,235,0.3); width: 100%; max-width: 400px;">
     <h1 style="color: #facc15; font-size: 24px; margin-bottom: 5px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">🚨 Emergency Backpack</h1>
     <p style="font-size: 12px; opacity: 0.95; margin-bottom: 15px;">Centro Interactivo de Supervivencia Sísmica (San Juan)</p>
     
@@ -49,12 +70,11 @@
   </div>
 </div>
 
-
 <!-- ========================================== -->
 <!-- PANTALLA 2: MOCHILA CON TRAMPAS Y COLORES  -->
 <!-- ========================================== -->
-<div id="game-screen" class="screen" style="padding: 15px; padding-bottom: 75px;">
-  <div style="background: white; border-top: 6px solid #dc2626; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1);">
+<div id="game-screen" class="screen">
+  <div style="background: white; border-top: 6px solid #dc2626; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); width: 100%; max-width: 400px;">
     <h2 style="color: #dc2626; margin: 0 0 5px 0; font-size: 18px; text-align: center;">🎒 Desafío Táctico: La Mochila</h2>
     <p style="font-size: 11px; color: #4b5563; text-align: center; margin-bottom: 12px;">¡Cuidado con las trampas! Selecciona <strong>exactamente los 6 elementos vitales</strong> y descarta juguetes, celulares y golosinas:</p>
     
@@ -64,12 +84,11 @@
   </div>
 </div>
 
-
 <!-- ========================================== -->
 <!-- PANTALLA 3: SIMULADOR CON ALARMA FUERTE    -->
 <!-- ========================================== -->
-<div id="simulator-screen" class="screen" style="padding: 15px; padding-bottom: 75px;">
-  <div id="quake-box" style="background: white; border-top: 6px solid #ea580c; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: center;">
+<div id="simulator-screen" class="screen">
+  <div id="quake-box" style="background: white; border-top: 6px solid #ea580c; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 400px;">
     <h2 style="color: #ea580c; margin: 0 0 5px 0; font-size: 18px;">🌍 Simulador Inmersivo Pro</h2>
     <p style="font-size: 11px; color: #4b5563; margin-bottom: 12px;">Siente la alerta sísmica real y practica tus reacciones.</p>
     
@@ -81,12 +100,11 @@
   </div>
 </div>
 
-
 <!-- ========================================== -->
 <!-- PANTALLA 4: GUÍA Y PROTOCOLOS OFICIALES    -->
 <!-- ========================================== -->
-<div id="protocol-screen" class="screen" style="padding: 15px; padding-bottom: 75px;">
-  <div style="background: white; border-top: 6px solid #16a34a; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left;">
+<div id="protocol-screen" class="screen">
+  <div style="background: white; border-top: 6px solid #16a34a; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left; width: 100%; max-width: 400px;">
     <h2 style="color: #16a34a; margin: 0 0 5px 0; font-size: 18px; text-align: center;">🏫 Guía y Protocolos Oficiales</h2>
     <p style="font-size: 10px; color: #6b7280; text-align: center; margin-bottom: 12px;">Basado en INPRES, UNICEF y Protección Civil.</p>
     
@@ -106,7 +124,6 @@
       <div style="background: #fef2f2; padding: 8px 10px; border-radius: 6px; border-left: 4px solid #dc2626;">
         🏚️ <strong>Vulnerabilidad en Adobe o Antiguas:</strong> Muy comunes en zonas rurales o tradicionales. Al no tener estructura sismorresistente, los techos de barro y paredes colapsan rápido. Si el sismo es violento y tienes salida directa libre, evacua de inmediato en los primeros segundos.
       </div>
-      <!-- Sección Puntos de Encuentro San Juan -->
       <div style="background: #eff6ff; padding: 8px 10px; border-radius: 6px; border-left: 4px solid #2563eb;">
         📍 <strong>Puntos de Encuentro Seguros en San Juan:</strong> Plazas principales (Plaza 25 de Mayo, Plaza Hipólito Yrigoyen / de la Joroba, Parque de Mayo) y espacios abiertos libres de edificios altos o tendido eléctrico identificados por Defensa Civil.
       </div>
@@ -116,12 +133,11 @@
   </div>
 </div>
 
-
 <!-- ========================================== -->
 <!-- PANTALLA 5: PLAN FAMILIAR (COMPLETO)       -->
 <!-- ========================================== -->
-<div id="plan-screen" class="screen" style="padding: 15px; padding-bottom: 75px;">
-  <div style="background: white; border-top: 6px solid #9333ea; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left;">
+<div id="plan-screen" class="screen">
+  <div style="background: white; border-top: 6px solid #9333ea; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left; width: 100%; max-width: 400px;">
     <h2 style="color: #9333ea; margin: 0 0 5px 0; font-size: 18px; text-align: center;">📋 Plan Familiar Estratégico</h2>
     <p style="font-size: 10px; color: #6b7280; text-align: center; margin-bottom: 12px;">Elabora tu plan familiar en cuatro pasos clave.</p>
     
@@ -143,7 +159,6 @@
     <button onclick="unlockPlanBadge(); switchScreen('main-menu');" style="width: 100%; margin-top: 15px; padding: 10px; background-color: #9333ea; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer;">✅ Guardar Plan e Insignia</button>
   </div>
 </div>
-
 
 <!-- ========================================== -->
 <!-- LÓGICA DE CONTROL JAVASCRIPT               -->
