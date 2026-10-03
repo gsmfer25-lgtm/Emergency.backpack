@@ -21,9 +21,7 @@
 
 
 <!-- ========================================== -->
-<!-- PANTALLA 1: INICIO DINÁMICO       <a href="https://cafecito.app/energybakcspacks" style="display: block; width: 80%; margin: 15px auto; padding: 12px; background-color: #ff5f5f; color: white; text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 14px; box-shadow: 0 4px 10px rgba(255,95,95,0.3);">☕ ¡Invítame un Cafecito!</a>
-
-        -->
+<!-- PANTALLA 1: INICIO DINÁMICO                -->
 <!-- ========================================== -->
 <div id="main-menu" class="screen active" style="padding: 15px; padding-bottom: 75px; text-align: center;">
   <div style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border-radius: 16px; padding: 25px 15px; box-shadow: 0 8px 20px rgba(37,99,235,0.3);">
@@ -39,7 +37,15 @@
         <span id="badge-plan" title="Plan" style="opacity: 0.3; filter: grayscale(1);">📋</span>
       </div>
     </div>
+    
     <div style="margin-top: 15px; font-size: 10px; opacity: 0.8;">Creado por <strong>Alejandro Fernández</strong></div>
+
+    <!-- Botón Cafecito -->
+    <div style="margin-top: 15px;">
+      <a href="https://cafecito.app" target="_blank" style="display: inline-block; background-color: #ff5f5f; color: white; padding: 8px 16px; border-radius: 20px; font-size: 11px; font-weight: bold; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
+        ☕ ¡Invítame un Cafecito!
+      </a>
+    </div>
   </div>
 </div>
 
@@ -100,6 +106,10 @@
       <div style="background: #fef2f2; padding: 8px 10px; border-radius: 6px; border-left: 4px solid #dc2626;">
         🏚️ <strong>Vulnerabilidad en Adobe o Antiguas:</strong> Muy comunes en zonas rurales o tradicionales. Al no tener estructura sismorresistente, los techos de barro y paredes colapsan rápido. Si el sismo es violento y tienes salida directa libre, evacua de inmediato en los primeros segundos.
       </div>
+      <!-- Sección Puntos de Encuentro San Juan -->
+      <div style="background: #eff6ff; padding: 8px 10px; border-radius: 6px; border-left: 4px solid #2563eb;">
+        📍 <strong>Puntos de Encuentro Seguros en San Juan:</strong> Plazas principales (Plaza 25 de Mayo, Plaza Hipólito Yrigoyen / de la Joroba, Parque de Mayo) y espacios abiertos libres de edificios altos o tendido eléctrico identificados por Defensa Civil.
+      </div>
     </div>
     
     <button onclick="unlockProtocolBadge(); switchScreen('main-menu');" style="width: 100%; margin-top: 15px; padding: 10px; background-color: #16a34a; color: white; border: none; border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer;">✅ Marcar Leído y Guardar Insignia</button>
@@ -108,7 +118,7 @@
 
 
 <!-- ========================================== -->
-<!-- PANTALLA 5: PLAN FAMILIAR ESTRATÉGICO      -->
+<!-- PANTALLA 5: PLAN FAMILIAR (COMPLETO)       -->
 <!-- ========================================== -->
 <div id="plan-screen" class="screen" style="padding: 15px; padding-bottom: 75px;">
   <div style="background: white; border-top: 6px solid #9333ea; border-radius: 16px; padding: 15px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left;">
@@ -134,24 +144,6 @@
   </div>
 </div>
 
-<style>
-  .screen { display: none; }
-  .screen.active { display: block; }
-  .is-shaking { animation: shake 0.5s infinite; }
-  @keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
-  }
-</style>
 
 <!-- ========================================== -->
 <!-- LÓGICA DE CONTROL JAVASCRIPT               -->
@@ -170,22 +162,19 @@
 
   function unlockProtocolBadge() {
     const badge = document.getElementById('badge-protocol');
-    if(badge) {
-      badge.style.opacity = '1';
-      badge.style.filter = 'none';
-    }
+    badge.style.opacity = '1';
+    badge.style.filter = 'none';
     playSuccessSound();
   }
 
   function unlockPlanBadge() {
     const badge = document.getElementById('badge-plan');
-    if(badge) {
-      badge.style.opacity = '1';
-      badge.style.filter = 'none';
-    }
+    badge.style.opacity = '1';
+    badge.style.filter = 'none';
     playSuccessSound();
   }
 
+  // Banco ampliado de elementos vitales y trampas para niños
   const backpackItems = [
     { id: 'radio', text: '📻 Radio portátil a pilas', vital: true },
     { id: 'botiquin', text: '🩹 Botiquín de primeros auxilios', vital: true },
@@ -193,6 +182,7 @@
     { id: 'linterna', text: '🔦 Linterna y pilas de repuesto', vital: true },
     { id: 'documentos', text: '🪪 Documentos de identidad', vital: true },
     { id: 'remedios', text: '💊 Medicamentos esenciales', vital: true },
+    // Trampas y distractores divertidos
     { id: 'celular', text: '📱 Celular (se saturan redes)', vital: false },
     { id: 'juguete', text: '🤖 Juguete o autito favorito', vital: false },
     { id: 'golosina', text: '🍫 Golosinas o chocolates', vital: false },
@@ -250,10 +240,8 @@
         if (correctCount === 6 && totalSelected === 6 && !hasDistractor) {
           playSuccessSound();
           const badge = document.getElementById('badge-backpack');
-          if(badge) {
-            badge.style.opacity = '1';
-            badge.style.filter = 'none';
-          }
+          badge.style.opacity = '1';
+          badge.style.filter = 'none';
           alert("¡Impecable! Kit de mochila completado sin caer en trampas 🎒");
         } else {
           playErrorSound();
@@ -264,6 +252,7 @@
     }
   });
 
+  // Alarma de sismo fuerte y estridente (Tipo sirena real)
   function playEarthquakeSiren() {
     try {
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -327,49 +316,43 @@
     } catch (e) {}
   }
 
-  function startAdvancedEarthquakeSimulation() {
+  window.startAdvancedEarthquakeSimulation = function() {
     const quakeBox = document.getElementById('quake-box');
     const quakeStatus = document.getElementById('quake-status');
-    if(quakeBox) quakeBox.classList.add('is-shaking');
+    quakeBox.classList.add('is-shaking');
 
     if ("vibrate" in navigator) navigator.vibrate([500, 200, 500, 200, 800, 200, 800]);
 
-    if(quakeStatus) {
-      quakeStatus.style.background = "#fee2e2";
-      quakeStatus.style.color = "#991b1b";
-      quakeStatus.style.border = "1px solid #fecaca";
-      quakeStatus.textContent = "🚨 ¡ALERTA SÍSMICA! 1/3: ¡Agáchate y cúbrete fuerte!";
-    }
+    quakeStatus.style.background = "#fee2e2";
+    quakeStatus.style.color = "#991b1b";
+    quakeStatus.style.border = "1px solid #fecaca";
+    quakeStatus.textContent = "🚨 ¡ALERTA SÍSMICA! 1/3: ¡Agáchate y cúbrete fuerte!";
     playEarthquakeSiren();
 
     setTimeout(() => {
-      if(quakeStatus) quakeStatus.textContent = "⚠️ ¡MOMENTO CRÍTICO! 2/3: ¡Aférrate y protege tu cabeza!";
+      quakeStatus.textContent = "⚠️ ¡MOMENTO CRÍTICO! 2/3: ¡Aférrate y protege tu cabeza!";
       playEarthquakeSiren();
       if ("vibrate" in navigator) navigator.vibrate([800, 200, 800]);
     }, 3500);
 
     setTimeout(() => {
-      if(quakeStatus) quakeStatus.textContent = "🛑 3/3: El sismo cede, mantén la calma y evalúa.";
+      quakeStatus.textContent = "🛑 3/3: El sismo cede, mantén la calma y evalúa.";
       playSuccessSound();
     }, 7000);
 
     setTimeout(() => {
-      if(quakeBox) quakeBox.classList.remove('is-shaking');
-      if(quakeStatus) {
-        quakeStatus.style.background = "#dcfce7";
-        quakeStatus.style.color = "#166534";
-        quakeStatus.style.border = "1px solid #bbf7d0";
-        quakeStatus.textContent = "✨ ¡Simulacro completado con éxito!";
-      }
+      quakeBox.classList.remove('is-shaking');
+      quakeStatus.style.background = "#dcfce7";
+      quakeStatus.style.color = "#166534";
+      quakeStatus.style.border = "1px solid #bbf7d0";
+      quakeStatus.textContent = "✨ ¡Simulacro completado con éxito!";
       playSuccessSound();
       
       const badge = document.getElementById('badge-quake');
-      if(badge) {
-        badge.style.opacity = '1';
-        badge.style.filter = 'none';
-      }
+      badge.style.opacity = '1';
+      badge.style.filter = 'none';
 
       if ("vibrate" in navigator) navigator.vibrate(0);
     }, 10000);
-  }
+  };
 </script>
