@@ -1,123 +1,791 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mochila de Emergencia</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f6f9;
-            margin: 0;
-            padding: 20px;
-        }
-        .donation-btn {
-            background-color: #ffb703;
-            color: #023047;
-            border: none;
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: background 0.3s;
-            margin-top: 20px;
-        }
-        .donation-btn:hover {
-            background-color: #fb8500;
-            color: #fff;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 12px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            position: relative;
-        }
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 22px;
-            font-weight: bold;
-            color: #aaa;
-            cursor: pointer;
-        }
-        .close-btn:hover {
-            color: #000;
-        }
-        .alias-box {
-            background-color: #e9ecef;
-            padding: 10px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 6px;
-            margin: 15px 0;
-            user-select: all;
-            word-break: break-all;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emergency Backpack - San Juan</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background-color: #f1f5f9;
+    }
+    .screen {
+      display: none;
+      height: calc(100vh - 95px);
+      overflow-y: auto;
+      padding: 20px 16px;
+      flex-direction: column;
+      width: 100%;
+    }
+    .screen.active {
+      display: flex;
+    }
+    @keyframes shake {
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      10% { transform: translate(-2px, -2px) rotate(-1deg); }
+      20% { transform: translate(-3px, 0px) rotate(1deg); }
+      30% { transform: translate(3px, 2px) rotate(0deg); }
+      40% { transform: translate(1px, -1px) rotate(1deg); }
+      50% { transform: translate(-1px, 2px) rotate(-1deg); }
+      60% { transform: translate(-3px, 1px) rotate(0deg); }
+      70% { transform: translate(3px, 1px) rotate(-1deg); }
+      80% { transform: translate(-1px, -1px) rotate(1deg); }
+      90% { transform: translate(1px, 2px) rotate(0deg); }
+      100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+    .is-shaking {
+      animation: shake 0.4s infinite;
+    }
+    /* Estilos de la ventana modal para donaciones */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #aaa;
+      cursor: pointer;
+    }
+    .close-btn:hover {
+      color: #000;
+    }
+    .alias-box {
+      background-color: #e9ecef;
+      padding: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 6px;
+      margin: 15px 0;
+      user-select: all;
+      word-break: break-all;
+      color: #1e293b;
+    }
+  </style>
 </head>
 <body>
 
-    <h1>Bienvenido a la App de Emergencia</h1>
-    <p>Aprende a preparar tu mochila y mantente seguro.</p>
+<!-- ========================================== -->
+<!-- BARRA DE NAVEGACIÓN INFERIOR AMPLIADA      -->
+<!-- ========================================== -->
+<div style="position: fixed; bottom: 0; left: 0; width: 100%; height: 95px; background: #0f172a; display: flex; justify-content: space-around; align-items: center; z-index: 1000; box-shadow: 0 -4px 15px rgba(0,0,0,0.4); border-top: 2px solid #334155; overflow-x: auto;">
+  <button onclick="switchScreen('main-menu')" style="background: none; border: none; color: white; cursor: pointer; text-align: center; flex: 1; min-width: 55px; padding: 5px;">
+    <span style="font-size: 28px; display: block; margin-bottom: 2px;">🏠</span>
+    <span style="font-size: 11px; font-weight: bold; opacity: 0.95;">Inicio</span>
+  </button>
+  <button onclick="switchScreen('game-screen')" style="background: none; border: none; color: white; cursor: pointer; text-align: center; flex: 1; min-width: 55px; padding: 5px;">
+    <span style="font-size: 28px; display: block; margin-bottom: 2px;">🎒</span>
+    <span style="font-size: 11px; font-weight: bold; opacity: 0.95;">Mochila</span>
+  </button>
+  <button onclick="switchScreen('simulator-screen')" style="background: none; border: none; color: white; cursor: pointer; text-align: center; flex: 1; min-width: 55px; padding: 5px;">
+    <span style="font-size: 28px; display: block; margin-bottom: 2px;">🌍</span>
+    <span style="font-size: 11px; font-weight: bold; opacity: 0.95;">Simulador</span>
+  </button>
+  <button onclick="switchScreen('protocol-screen')" style="background: none; border: none; color: white; cursor: pointer; text-align: center; flex: 1; min-width: 55px; padding: 5px;">
+    <span style="font-size: 28px; display: block; margin-bottom: 2px;">🏫</span>
+    <span style="font-size: 11px; font-weight: bold; opacity: 0.95;">Guía</span>
+  </button>
+  <button onclick="switchScreen('history-screen')" style="background: none; border: none; color: white; cursor: pointer; text-align: center; flex: 1; min-width: 55px; padding: 5px;">
+    <span style="font-size: 28px; display: block; margin-bottom: 2px;">📜</span>
+    <span style="font-size: 11px; font-weight: bold; opacity: 0.95;">Historia</span>
+  </button>
+  <button onclick="switchScreen('refuge-screen')" style="background: none; border: none; color: white; cursor: pointer; text-align: center; flex: 1; min-width: 55px; padding: 5px;">
+    <span style="font-size: 28px; display: block; margin-bottom: 2px;">📍</span>
+    <span style="font-size: 11px; font-weight: bold; opacity: 0.95;">Refugios</span>
+  </button>
+  <button onclick="switchScreen('trivia-screen')" style="background: none; border: none; color: white; cursor: pointer; text-align: center; flex: 1; min-width: 55px; padding: 5px;">
+    <span style="font-size: 28px; display: block; margin-bottom: 2px;">💡</span>
+    <span style="font-size: 11px; font-weight: bold; opacity: 0.95;">Trivia</span>
+  </button>
+</div>
 
-    <!-- Botón con la frase amable -->
-    <button class="donation-btn" onclick="openModal()">Si deseas apoyar mi proyecto</button>
-
-    <!-- Ventana Modal -->
-    <div id="donationModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h3>¡Gracias de corazón por querer colaborar!</h3>
-            <p>Tu aporte voluntario ayuda a que este proyecto educativo siga creciendo.</p>
-            <p>Podes transferir al siguiente Alias:</p>
-            <div class="alias-box" id="aliasText">AFERNANDE3387.NX.ARS</div>
-            <button onclick="copyAlias()" style="padding: 8px 15px; background-color: #219ebc; color: white; border: none; border-radius: 5px; cursor: pointer;">Copiar Alias</button>
-        </div>
+<!-- ========================================== -->
+<!-- PANTALLA 1: INICIO DINÁMICO                -->
+<!-- ========================================== -->
+<div id="main-menu" class="screen active" style="align-items: center; justify-content: flex-start;">
+  <div style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: white; border-radius: 20px; padding: 30px 20px; box-shadow: 0 8px 20px rgba(37,99,235,0.3); width: 100%; text-align: center; margin-bottom: 30px;">
+    <h1 style="color: #facc15; font-size: 32px; margin-top: 0; margin-bottom: 12px; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">🚨 Emergency Backpack</h1>
+    <p style="font-size: 17px; opacity: 0.95; margin-bottom: 20px; line-height: 1.4;">Centro Interactivo de Supervivencia Sísmica (San Juan)</p>
+    
+    <!-- DESAFÍO DIARIO -->
+    <div style="background: rgba(255, 255, 255, 0.2); padding: 15px; border-radius: 14px; margin-bottom: 20px; text-align: left;">
+      <h4 style="margin: 0 0 5px 0; color: #facc15; font-size: 16px;">📌 Desafío Diario de Seguridad</h4>
+      <p id="daily-challenge-text" style="margin: 0; font-size: 14px; opacity: 0.95;">Cargando desafío...</p>
     </div>
 
-    <script>
-        function openModal() {
-            document.getElementById('donationModal').style.display = 'flex';
-        }
+    <div style="background: rgba(255, 255, 255, 0.15); padding: 20px 15px; border-radius: 16px; border: 1px dashed rgba(255, 255, 255, 0.6); margin-bottom: 20px;">
+      <h3 style="font-size: 19px; margin-top: 0; margin-bottom: 15px; color: #facc15;">🏆 Tus Insignias de Superviviente</h3>
+      <div id="badges-container" style="display: flex; justify-content: center; gap: 15px; font-size: 36px; flex-wrap: wrap;">
+        <span id="badge-backpack" title="Mochila" style="opacity: 0.3; filter: grayscale(1);">🎒</span>
+        <span id="badge-quake" title="Simulador" style="opacity: 0.3; filter: grayscale(1);">🛡️</span>
+        <span id="badge-protocol" title="Guía" style="opacity: 0.3; filter: grayscale(1);">🏫</span>
+        <span id="badge-history" title="Historia" style="opacity: 0.3; filter: grayscale(1);">📜</span>
+        <span id="badge-refuge" title="Refugios" style="opacity: 0.3; filter: grayscale(1);">📍</span>
+        <span id="badge-trivia" title="Trivia" style="opacity: 0.3; filter: grayscale(1);">💡</span>
+      </div>
+    </div>
+    
+    <div style="font-size: 16px; opacity: 0.9; margin-bottom: 20px;">Creado por <strong>Alejandro Fernández</strong></div>
 
-        function closeModal() {
-            document.getElementById('donationModal').style.display = 'none';
-        }
+    <!-- BOTÓN DE APOYO / DONACIÓN CON MODAL -->
+    <div>
+      <button onclick="openModal()" style="background-color: #ffb703; color: #023047; border: none; padding: 14px 24px; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: background 0.3s;">
+        💛 Si deseas apoyar mi proyecto
+      </button>
+    </div>
+  </div>
+</div>
 
-        function copyAlias() {
-            const aliasText = document.getElementById('aliasText').innerText;
-            navigator.clipboard.writeText(aliasText).then(() => {
-                alert('¡Alias copiado al portapapeles!');
-            });
-        }
+<!-- ========================================== -->
+<!-- PANTALLA 2: MOCHILA CON TRAMPAS Y COLORES  -->
+<!-- ========================================== -->
+<div id="game-screen" class="screen">
+  <div style="background: white; border-top: 10px solid #dc2626; border-radius: 20px; padding: 25px 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); width: 100%; margin-bottom: 30px;">
+    <h2 style="color: #dc2626; margin-top: 0; margin-bottom: 12px; font-size: 26px; text-align: center;">🎒 Desafío Táctico: La Mochila</h2>
+    <p style="font-size: 17px; color: #4b5563; text-align: center; margin-bottom: 20px; line-height: 1.4;">¡Cuidado con las trampas! Selecciona <strong>exactamente los 6 elementos vitales</strong>:</p>
+    
+    <div id="cards-container" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 25px;"></div>
 
-        window.onclick = function(event) {
-            const modal = document.getElementById('donationModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        }
-    </script>
+    <button id="check-backpack" style="width: 100%; padding: 18px; background-color: #16a34a; color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; cursor: pointer; box-shadow: 0 4px 12px rgba(22,163,74,0.3);">✅ Validar Kit de Emergencia</button>
+  </div>
+</div>
 
+<!-- ========================================== -->
+<!-- PANTALLA 3: SIMULADOR CON ALARMA Y VOZ     -->
+<!-- ========================================== -->
+<div id="simulator-screen" class="screen">
+  <div id="quake-box" style="background: white; border-top: 10px solid #ea580c; border-radius: 20px; padding: 25px 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: center; width: 100%; margin-bottom: 30px;">
+    <h2 style="color: #ea580c; margin-top: 0; margin-bottom: 12px; font-size: 26px;">🌍 Simulador Inmersivo Pro</h2>
+    <p style="font-size: 17px; color: #4b5563; margin-bottom: 20px; line-height: 1.4;">Siente la alerta sísmica real y practica tus reacciones.</p>
+    
+    <div id="quake-status" style="font-size: 17px; font-weight: bold; margin: 25px 0; padding: 20px; background: #fef3c7; color: #92400e; border-radius: 12px; border: 1px solid #fde68a; line-height: 1.4;">
+      ⚡ Estado: Listo para iniciar prueba
+    </div>
+
+    <button onclick="startAdvancedEarthquakeSimulation()" style="width: 100%; padding: 18px; background-color: #dc2626; color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; cursor: pointer; box-shadow: 0 4px 12px rgba(220,38,38,0.3);">🚨 ¡Activar Alerta Sísmica Real!</button>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- PANTALLA 4: GUÍA Y PROTOCOLOS OFICIALES    -->
+<!-- ========================================== -->
+<div id="protocol-screen" class="screen">
+  <div style="background: white; border-top: 10px solid #16a34a; border-radius: 20px; padding: 25px 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left; width: 100%; margin-bottom: 30px;">
+    <h2 style="color: #16a34a; margin-top: 0; margin-bottom: 15px; font-size: 26px; text-align: center;">🏫 Guía y Protocolos Oficiales</h2>
+    <p style="font-size: 15px; color: #6b7280; text-align: center; margin-bottom: 20px;">Basado en INPRES, UNICEF y Protección Civil.</p>
+    
+    <div style="font-size: 17px; color: #374151; line-height: 1.6; display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: #f0fdf4; padding: 16px; border-radius: 12px; border-left: 6px solid #16a34a;">
+        🏠 <strong>Antes del Sismo:</strong> Diseña un plan familiar, asegura muebles pesados a la pared y protege vidrios con cinta transparente.
+      </div>
+      <div style="background: #f0fdf4; padding: 16px; border-radius: 12px; border-left: 6px solid #16a34a;">
+        🛑 <strong>Durante el Sismo:</strong> 
+        <br>• <em>Dentro:</em> Agáchate, cúbrete y agárrate fuerte debajo de una mesa resistente. Aléjate de ventanas.
+        <br>• <em>Fuera:</em> Aléjate de edificios, postes y cables eléctricos.
+      </div>
+      <div style="background: #f0fdf4; padding: 16px; border-radius: 12px; border-left: 6px solid #16a34a;">
+        ⚠️ <strong>Después del Sismo:</strong> Cuidado con réplicas. Apaga suministros de gas y electricidad si hay daños y mantente informado.
+      </div>
+      <div style="background: #fef2f2; padding: 16px; border-radius: 12px; border-left: 6px solid #dc2626;">
+        🏚 <strong>Vulnerabilidad en Adobe:</strong> Si estás en construcciones precarias y el sismo es violento, evacua de inmediato en los primeros segundos.
+      </div>
+      <div style="background: #eff6ff; padding: 16px; border-radius: 12px; border-left: 6px solid #2563eb;">
+        📍 <strong>Puntos de Encuentro en San Juan:</strong> Plazas principales (25 de Mayo, Joroba, Parque de Mayo) y espacios abiertos seguros.
+      </div>
+    </div>
+    
+    <button onclick="unlockProtocolBadge(); switchScreen('main-menu');" style="width: 100%; margin-top: 25px; padding: 18px; background-color: #16a34a; color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; cursor: pointer;">✅ Marcar Leído y Guardar Insignia</button>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- PANTALLA 5: HISTORIA SÍSMICA DE SAN JUAN   -->
+<!-- ========================================== -->
+<div id="history-screen" class="screen">
+  <div style="background: white; border-top: 10px solid #ca8a04; border-radius: 20px; padding: 25px 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left; width: 100%; margin-bottom: 30px;">
+    <h2 style="color: #ca8a04; margin-top: 0; margin-bottom: 15px; font-size: 26px; text-align: center;">📜 Historia Sísmica de San Juan</h2>
+    <p style="font-size: 15px; color: #6b7280; text-align: center; margin-bottom: 20px;">Los terremotos más poderosos que marcaron nuestra identidad y normas de construcción.</p>
+    
+    <div style="font-size: 17px; color: #374151; line-height: 1.6; display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: #fefce8; padding: 16px; border-radius: 12px; border-left: 6px solid #ca8a04;">
+        📅 <strong>Terremoto de 1944 (15 de Enero):</strong> Magnitud estimada de 7.0 a 7.4. Devastó la ciudad de San Juan en menos de un minuto y cobró miles de vidas. Fue el punto de partida para crear el sistema antisísmico argentino y fundar el INPRES.
+      </div>
+      <div style="background: #fefce8; padding: 16px; border-radius: 12px; border-left: 6px solid #ca8a04;">
+        📅 <strong>Terremoto de Caucete (23 de Noviembre de 1977):</strong> Magnitud de 7.4. Causó graves daños estructurales en Caucete y zonas aledañas, demostrando la efectividad de las nuevas normativas en construcciones modernas frente a las antiguas.
+      </div>
+      <div style="background: #fefce8; padding: 16px; border-radius: 12px; border-left: 6px solid #ca8a04;">
+        🏗️ <strong>Legado Preventivo:</strong> San Juan es hoy pionera en ingeniería antisísmica en Latinoamérica gracias a la resiliencia de su gente y la evolución estricta de sus códigos de edificación.
+      </div>
+    </div>
+    
+    <button onclick="unlockHistoryBadge(); switchScreen('main-menu');" style="width: 100%; margin-top: 25px; padding: 18px; background-color: #ca8a04; color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; cursor: pointer;">✅ Guardar Insignia Histórica</button>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- PANTALLA 6: REFUGIOS Y PUNTOS DE ENCUENTRO -->
+<!-- ========================================== -->
+<div id="refuge-screen" class="screen">
+  <div style="background: white; border-top: 10px solid #0284c7; border-radius: 20px; padding: 25px 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: left; width: 100%; margin-bottom: 30px;">
+    <h2 style="color: #0284c7; margin-top: 0; margin-bottom: 15px; font-size: 26px; text-align: center;">📍 Refugios y Puntos Seguros</h2>
+    <p style="font-size: 15px; color: #6b7280; text-align: center; margin-bottom: 20px;">Zonas abiertas estratégicas designadas en San Juan.</p>
+    
+    <div style="font-size: 17px; color: #374151; line-height: 1.6; display: flex; flex-direction: column; gap: 16px;">
+      <div style="background: #f0f9ff; padding: 16px; border-radius: 12px; border-left: 6px solid #0284c7;">
+        🌳 <strong>Plaza 25 de Mayo:</strong> Espacio céntrico principal libre de edificios altos colindantes directos.
+      </div>
+      <div style="background: #f0f9ff; padding: 16px; border-radius: 12px; border-left: 6px solid #0284c7;">
+        🌳 <strong>Parque de Mayo:</strong> Gran pulmón verde con amplias áreas despejadas y rutas de escape perimetrales.
+      </div>
+      <div style="background: #f0f9ff; padding: 16px; border-radius: 12px; border-left: 6px solid #0284c7;">
+        🌳 <strong>Plaza La Joroba:</strong> Punto de evacuación clave en el sector sur del ejido urbano.
+      </div>
+    </div>
+    
+    <button onclick="unlockRefugeBadge(); switchScreen('main-menu');" style="width: 100%; margin-top: 25px; padding: 18px; background-color: #0284c7; color: white; border: none; border-radius: 12px; font-weight: bold; font-size: 18px; cursor: pointer;">✅ Reconocer Puntos y Guardar Insignia</button>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- PANTALLA 7: TRIVIA DE PRIMEROS AUXILIOS    -->
+<!-- ========================================== -->
+<div id="trivia-screen" class="screen">
+  <div style="background: white; border-top: 10px solid #7c3aed; border-radius: 20px; padding: 25px 20px; box-shadow: 0 6px 20px rgba(0,0,0,0.1); text-align: center; width: 100%; margin-bottom: 30px;">
+    <h2 style="color: #7c3aed; margin-top: 0; margin-bottom: 15px; font-size: 26px;">💡 Trivia de Supervivencia</h2>
+    <p style="font-size: 17px; color: #4b5563; margin-bottom: 20px;">Pon a prueba tus conocimientos sobre sismos.</p>
+    
+    <div id="trivia-question-box" style="background: #faf5ff; padding: 20px; border-radius: 14px; border: 1px solid #e9d5ff; font-size: 18px; font-weight: bold; color: #581c87; margin-bottom: 20px; text-align: left;">
+      Cargando pregunta...
+    </div>
+
+    <div id="trivia-options" style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px;"></div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- VENTANA MODAL DE DONACIÓN / APOYO          -->
+<!-- ========================================== -->
+<div id="donationModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h3 style="color: #023047; margin-top: 10px;">¡Gracias de corazón por querer colaborar!</h3>
+    <p style="color: #4b5563; font-size: 15px; line-height: 1.4;">Tu aporte voluntario ayuda a que este proyecto educativo siga creciendo y llegando a más niños.</p>
+    <p style="color: #1e293b; font-weight: bold;">Podes transferir al siguiente Alias:</p>
+    <div class="alias-box" id="aliasText">AFERNANDE3387.NX.ARS</div>
+    <button onclick="copyAlias()" style="width: 100%; padding: 12px; background-color: #219ebc; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">📋 Copiar Alias</button>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- LÓGICA DE CONTROL JAVASCRIPT               -->
+<!-- ========================================== -->
+<script>
+  function switchScreen(screenId) {
+    document.querySelectorAll('.screen').forEach(screen => {
+      screen.classList.remove('active');
+    });
+    const targetScreen = document.getElementById(screenId);
+    if (targetScreen) {
+      targetScreen.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  }
+
+  // Funciones de la ventana modal
+  function openModal() {
+    document.getElementById('donationModal').style.display = 'flex';
+  }
+
+  function closeModal() {
+    document.getElementById('donationModal').style.display = 'none';
+  }
+
+  function copyAlias() {
+    const aliasText = document.getElementById('aliasText').innerText;
+    navigator.clipboard.writeText(aliasText).then(() => {
+      alert('¡Alias copiado al portapapeles!');
+    });
+  }
+
+  // Cierra el modal si hacen clic fuera del contenido
+  window.onclick = function(event) {
+    const modal = document.getElementById('donationModal');
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+
+  function unlockProtocolBadge() {
+    const badge = document.getElementById('badge-protocol');
+    badge.style.opacity = '1';
+    badge.style.filter = 'none';
+    playSuccessSound();
+  }
+
+  function unlockHistoryBadge() {
+    const badge = document.getElementById('badge-history');
+    badge.style.opacity = '1';
+    badge.style.filter = 'none';
+    playSuccessSound();
+  }
+
+  function unlockRefugeBadge() {
+    const badge = document.getElementById('badge-refuge');
+    badge.style.opacity = '1';
+    badge.style.filter = 'none';
+    playSuccessSound();
+  }
+
+  function unlockTriviaBadge() {
+    const badge = document.getElementById('badge-trivia');
+    badge.style.opacity = '1';
+    badge.style.filter = 'none';
+    playSuccessSound();
+  }
+
+  function speakText(text) {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'es-AR';
+      utterance.rate = 1.0;
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+  }
+
+  const backpackItems = [
+    { id: 'radio', text: '📻 Radio portátil a pilas', vital: true },
+    { id: 'botiquin', text: '🩹 Botiquín de primeros auxilios', vital: true },
+    { id: 'agua', text: '💧 Botella de agua embotellada', vital: true },
+    { id: 'linterna', text: '🔦 Linterna y pilas de repuesto', vital: true },
+    { id: 'documentos', text: '🪪 Documentos de identidad', vital: true },
+    { id: 'remedios', text: '💊 Medicamentos esenciales', vital: true },
+    { id: 'celular', text: '📱 Celular (se saturan redes)', vital: false },
+    { id: 'juguete', text: '🤖 Juguete o autito favorito', vital: false },
+    { id: 'golosina', text: '🍫 Golosinas o chocolates', vital: false },
+    { id: 'consola', text: '🎮 Consola de videojuegos', vital: false },
+    { id: 'peluche', text: '🧸 Peluche gigante', vital: false },
+    { id: 'maquillaje', text: '💄 Maquillaje o accesorios', vital: false }
+  ];
+
+  function loadRandomizedBackpack() {
+    const container = document.getElementById('cards-container');
+    if (!container) return;
+    container.innerHTML = '';
+    const shuffled = [...backpackItems].sort(() => Math.random() - 0.5);
+
+    shuffled.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.setAttribute('data-item', item.id);
+      div.setAttribute('data-vital', item.vital);
+      div.style.cssText = 'padding: 18px 16px; background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 12px; cursor: pointer; text-align: left; font-size: 17px; font-weight: 600; transition: all 0.2s; color: #334155;';
+      div.textContent = item.text;
+
+      div.addEventListener('click', () => {
+        div.classList.toggle('selected');
+        if (div.classList.contains('selected')) {
+          div.style.background = '#dcfce7';
+          div.style.border = '2px solid #16a34a';
+          div.style.color = '#166534';
+        } else {
+          div.style.background = '#f8fafc';
+          div.style.border = '2px solid #cbd5e1';
+          div.style.color = '#334155';
+        }
+      });
+      container.appendChild(div);
+    });
+  }
+
+  // TRIVIA QUESTIONS (Exactamente 20 Preguntas)
+  const triviaQuestions = [
+    {
+      q: "¿Qué debes hacer inmediatamente al comenzar un sismo fuerte estando dentro de casa?",
+      options: [
+        { text: "Correr hacia la calle de inmediato", correct: false },
+        { text: "Agacharte, cubrirte y agarrarte debajo de una mesa resistente", correct: true },
+        { text: "Pararse en el marco de la puerta", correct: false }
+      ]
+    },
+    {
+      q: "¿Cuál fue el terremoto más devastador en la historia moderna de San Juan?",
+      options: [
+        { text: "El de 1944", correct: true },
+        { text: "El de 2020", correct: false },
+        { text: "El de 1990", correct: false }
+      ]
+    },
+    {
+      q: "¿Cuántos litros de agua por persona se recomiendan aprovisionar por día en la mochila?",
+      options: [
+        { text: "Medio litro", correct: false },
+        { text: "Al menos 1 litro", correct: true },
+        { text: "5 litros", correct: false }
+      ]
+    },
+    {
+      q: "¿Qué institución en Argentina se encarga de investigar y prevenir los daños causados por sismos (con sede principal en San Juan)?",
+      options: [
+        { text: "El INPRES", correct: true },
+        { text: "El Servicio Meteorológico", correct: false },
+        { text: "Vialidad Nacional", correct: false }
+      ]
+    },
+    {
+      q: "Si te encuentras en la calle durante un movimiento sísmico fuerte, ¿qué es lo más seguro?",
+      options: [
+        { text: "Alejarte de edificios, postes de luz y cables eléctricos", correct: true },
+        { text: "Refugiarte debajo de los balcones de las casas", correct: false },
+        { text: "Pararte al lado de paredes altas de ladrillo", correct: false }
+      ]
+    },
+    {
+      q: "¿Por qué NO debes usar el ascensor durante o inmediatamente después de un sismo?",
+      options: [
+        { text: "Porque se rompen las ventanas del edificio", correct: false },
+        { text: "Porque puede interrumpirse el suministro eléctrico y quedar atrapado", correct: true },
+        { text: "Porque va más lento de lo normal", correct: false }
+      ]
+    },
+    {
+      q: "¿En qué fecha exacta ocurrió el histórico terremoto de San Juan de 1944?",
+      options: [
+        { text: "15 de Enero", correct: true },
+        { text: "23 de Noviembre", correct: false },
+        { text: "9 de Julio", correct: false }
+      ]
+    },
+    {
+      q: "¿Qué gran terremoto afectó principalmente a la zona de Caucete en San Juan?",
+      options: [
+        { text: "El terremoto de 1977", correct: true },
+        { text: "El terremoto de 1944", correct: false },
+        { text: "El terremoto de 1861", correct: false }
+      ]
+    },
+    {
+      q: "Durante un sismo, ¿por qué es peligroso permanecer cerca de las ventanas?",
+      options: [
+        { text: "Porque entra aire frío", correct: false },
+        { text: "Porque los vidrios se pueden romper y causar cortaduras severas", correct: true },
+        { text: "Porque se pueden ver cosas feas", correct: false }
+      ]
+    },
+    {
+      q: "¿Cuál de estos elementos NO se considera vital para la mochila de emergencia?",
+      options: [
+        { text: "Linterna y pilas de repuesto", correct: false },
+        { text: "Consola de videojuegos portatil", correct: true },
+        { text: "Botiquín de primeros auxilios", correct: false }
+      ]
+    },
+    {
+      q: "¿Qué se debe hacer con los suministros de gas y luz si hay sospecha de daños tras un sismo?",
+      options: [
+        { text: "Encender velas para ver si hay fugas", correct: false },
+        { text: "Cerrar las llaves de paso principales inmediatamente", correct: true },
+        { text: "Dejarlos abiertos para ventilar", correct: false }
+      ]
+    },
+    {
+      q: "¿Para qué sirve incluir una radio a pilas en la mochila de emergencia?",
+      options: [
+        { text: "Para escuchar música mientras se espera", correct: false },
+        { text: "Para informarse de alertas oficiales si caen las redes telefónicas e internet", correct: true },
+        { text: "Para comunicarse con los bomberos directamente", correct: false }
+      ]
+    },
+    {
+      q: "¿Por qué las casas construidas con adobe son más vulnerables durante un sismo?",
+      options: [
+        { text: "Porque el adobe es un material pesado y no flexible que colapsa con facilidad", correct: true },
+        { text: "Porque se incendian muy rápido", correct: false },
+        { text: "Porque no tienen ventanas", correct: false }
+      ]
+    },
+    {
+      q: "¿Qué es una 'réplica' en el contexto sísmico?",
+      options: [
+        { text: "Un sismo secundario que ocurre después del terremoto principal", correct: true },
+        { text: "Un temblor que ocurre exactamente un año después", correct: false },
+        { text: "Una simulación realizada por los bomberos", correct: false }
+      ]
+    },
+    {
+      q: "Si estás conduciendo un vehículo durante un sismo, ¿qué debes hacer?",
+      options: [
+        { text: "Acelerar para llegar lo más rápido posible a casa", correct: false },
+        { text: "Detenerse en un lugar seguro lejos de puentes, postes y edificios, permaneciéndote dentro del auto", correct: true },
+        { text: "Bajar del vehículo y correr por la carretera", correct: false }
+      ]
+    },
+    {
+      q: "¿Por qué es muy importante asegurar armarios y estanterías pesadas a la pared?",
+      options: [
+        { text: "Para que no se vuelquen ni caigan sobre las personas durante el temblor", correct: true },
+        { text: "Para que la casa se vea más ordenada", correct: false },
+        { text: "Para evitar que entren insectos por detrás", correct: false }
+      ]
+    },
+    {
+      q: "¿Cuál de las siguientes plazas de San Juan es un punto de encuentro seguro ante emergencias?",
+      options: [
+        { text: "Plaza 25 de Mayo", correct: true },
+        { text: "Un centro comercial techado", correct: false },
+        { text: "Un estacionamiento subterráneo", correct: false }
+      ]
+    },
+    {
+      q: "¿Qué medio de comunicación es preferible usar tras un sismo para no saturar las redes de emergencia?",
+      options: [
+        { text: "Llamadas telefónicas de larga duración", correct: false },
+        { text: "Mensajes de texto breves o mensajería de datos", correct: true },
+        { text: "Llamar a todos los vecinos uno por uno", correct: false }
+      ]
+    },
+    {
+      q: "¿Cada cuánto tiempo es aconsejable revisar y renovar los elementos perecederos de la mochila de emergencia?",
+      options: [
+        { text: "Cada 10 años", correct: false },
+        { text: "Al menos una o dos veces al año", correct: true },
+        { text: "Nunca, los insumos no vencen", correct: false }
+      ]
+    },
+    {
+      q: "¿Qué significa que San Juan cuente con un 'código de edificación antisísmica'?",
+      options: [
+        { text: "Que las construcciones se diseñan y calculan para resistir movimientos telúricos sin colapsar", correct: true },
+        { text: "Que no se pueden construir casas de más de un piso", correct: false },
+        { text: "Que todas las casas deben ser de madera", correct: false }
+      ]
+    }
+  ];
+
+  let currentTriviaIndex = 0;
+
+  function loadTriviaQuestion() {
+    const qBox = document.getElementById('trivia-question-box');
+    const optBox = document.getElementById('trivia-options');
+    if (!qBox || !optBox) return;
+
+    const currentQ = triviaQuestions[currentTriviaIndex];
+    qBox.textContent = `Pregunta ${currentTriviaIndex + 1} de ${triviaQuestions.length}: ${currentQ.q}`;
+    optBox.innerHTML = '';
+
+    currentQ.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.textContent = opt.text;
+      btn.style.cssText = 'padding: 16px; background: #f3e8ff; border: 2px solid #d8b4fe; border-radius: 12px; font-size: 16px; font-weight: bold; color: #6b21a8; cursor: pointer; text-align: left;';
+      
+      btn.addEventListener('click', () => {
+        if (opt.correct) {
+          playSuccessSound();
+          alert("¡Respuesta correcta!");
+          currentTriviaIndex++;
+          if (currentTriviaIndex < triviaQuestions.length) {
+            loadTriviaQuestion();
+          } else {
+            unlockTriviaBadge();
+            alert("¡Felicitaciones! Has completado la trivia entera de 20 preguntas y ganado la insignia de experto.");
+            currentTriviaIndex = 0;
+            loadTriviaQuestion();
+            switchScreen('main-menu');
+          }
+        } else {
+          playErrorSound();
+          alert("Incorrecto. Inténtalo de nuevo.");
+        }
+      });
+      optBox.appendChild(btn);
+    });
+  }
+
+  // DESAFÍO DIARIO
+  const dailyChallenges = [
+    "Revisa hoy que la linterna de emergencia tenga pilas funcionales.",
+    "Verifica que las salidas y pasillos de tu casa estén libres de obstáculos.",
+    "Repasa con tu familia cuál es el punto de encuentro externo más cercano.",
+    "Controla la fecha de caducidad del agua embotellada en tu kit."
+  ];
+
+  function loadDailyChallenge() {
+    const textEl = document.getElementById('daily-challenge-text');
+    if (textEl) {
+      const dayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+      textEl.textContent = dailyChallenges[dayOfYear % dailyChallenges.length];
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadRandomizedBackpack();
+    loadTriviaQuestion();
+    loadDailyChallenge();
+
+    const checkBtn = document.getElementById('check-backpack');
+    if (checkBtn) {
+      checkBtn.addEventListener('click', () => {
+        const cards = document.querySelectorAll('#cards-container .card');
+        let correctCount = 0, totalSelected = 0, hasDistractor = false;
+
+        cards.forEach(card => {
+          if (card.classList.contains('selected')) {
+            totalSelected++;
+            if (card.getAttribute('data-vital') === 'true') correctCount++;
+            else hasDistractor = true;
+          }
+        });
+
+        if (correctCount === 6 && totalSelected === 6 && !hasDistractor) {
+          playSuccessSound();
+          const badge = document.getElementById('badge-backpack');
+          badge.style.opacity = '1';
+          badge.style.filter = 'none';
+          alert("¡Impecable! Kit de mochila completado sin caer en trampas 🎒");
+        } else {
+          playErrorSound();
+          alert("¡Cuidado! Seleccionaste elementos incorrectos. Debes elegir exactamente los 6 vitales. ¡Inténtalo de nuevo!");
+          loadRandomizedBackpack();
+        }
+      });
+    }
+  });
+
+  function playEarthquakeSiren() {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      let time = audioCtx.currentTime;
+      
+      for (let i = 0; i < 6; i++) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        
+        osc.frequency.setValueAtTime(400, time);
+        osc.frequency.linearRampToValueAtTime(850, time + 0.25);
+        
+        gain.gain.setValueAtTime(0.5, time);
+        gain.gain.exponentialRampToValueAtTime(0.01, time + 0.3);
+        
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc.start(time);
+        osc.stop(time + 0.3);
+        time += 0.35;
+      }
+    } catch (e) {
+      console.log("Audio no soportado.");
+    }
+  }
+
+  function playSuccessSound() {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+      osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.15);
+      osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.3);
+      gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.6);
+    } catch (e) {}
+  }
+
+  function playErrorSound() {
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+      osc.frequency.setValueAtTime(120, audioCtx.currentTime + 0.2);
+      gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.4);
+    } catch (e) {}
+  }
+
+  window.startAdvancedEarthquakeSimulation = function() {
+    const quakeBox = document.getElementById('quake-box');
+    const quakeStatus = document.getElementById('quake-status');
+    quakeBox.classList.add('is-shaking');
+
+    if ("vibrate" in navigator) navigator.vibrate([500, 200, 500, 200, 800, 200, 800]);
+
+    quakeStatus.style.background = "#fee2e2";
+    quakeStatus.style.color = "#991b1b";
+    quakeStatus.style.border = "1px solid #fecaca";
+    quakeStatus.textContent = "🚨 ¡ALERTA SÍSMICA! 1/3: ¡Agáchate y cúbrete fuerte!";
+    
+    playEarthquakeSiren();
+    speakText("Alerta simulacro. Terremoto en curso. Agáchate y cúbrete.");
+
+    setTimeout(() => {
+      quakeStatus.textContent = "⚠️ ¡MOMENTO CRÍTICO! 2/3: ¡Aférrate y protege tu cabeza!";
+      playEarthquakeSiren();
+      speakText("Atención. Mantén la calma y protégete.");
+      if ("vibrate" in navigator) navigator.vibrate([800, 200, 800]);
+    }, 3500);
+
+    setTimeout(() => {
+      quakeStatus.textContent = "🛑 3/3: El sismo cede, mantén la calma y evalúa.";
+      playSuccessSound();
+      speakText("El sismo ha cesado. Evalúa la situación.");
+    }, 7000);
+
+    setTimeout(() => {
+      quakeBox.classList.remove('is-shaking');
+      quakeStatus.style.background = "#dcfce7";
+      quakeStatus.style.color = "#166534";
+      quakeStatus.style.border = "1px solid #bbf7d0";
+      quakeStatus.textContent = "✨ ¡Simulacro completado con éxito!";
+      playSuccessSound();
+      
+      const badge = document.getElementById('badge-quake');
+      badge.style.opacity = '1';
+      badge.style.filter = 'none';
+
+      if ("vibrate" in navigator) navigator.vibrate(0);
+    }, 10000);
+  };
+</script>
 </body>
 </html>
