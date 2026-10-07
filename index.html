@@ -531,23 +531,23 @@
     });
   }
 
-  // TRIVIA DE 20 PREGUNTAS: 1-10 SIMULACRO/SISMOS, 11-20 EMERGENCIA HÍDRICA
+  // TRIVIA DE 20 PREGUNTAS (RESPUESTAS CORRECTAS ALEATORIZADAS EN DISTINTAS POSICIONES)
   const triviaQuestions = [
-    // PARTE 1: SIMULACRO Y SISMOS (1 a 10)
+    // PARTE 1: SISMOS (1 a 10)
     {
       q: "1. ¿Qué acción inmediata debes realizar al sentir los primeros segundos de un sismo fuerte dentro de un edificio?",
       options: [
-        { text: "Agáchate, cúbrete y agárrate fuerte debajo de una mesa resistente", correct: true },
         { text: "Correr rápidamente hacia los ascensores", correct: false },
+        { text: "Agáchate, cúbrete y agárrate fuerte debajo de una mesa resistente", correct: true },
         { text: "Pararse cerca de una ventana grande para ver afuera", correct: false }
       ]
     },
     {
       q: "2. Durante la realización de un simulacro sísmico escolar o familiar, ¿cómo debes desplazarte?",
       options: [
-        { text: "Caminando en orden, en silencio y siguiendo las rutas de evacuación señalizadas", correct: true },
         { text: "Empujando a los compañeros para salir primero", correct: false },
-        { text: "Quedándose en el lugar sin prestar atención", correct: false }
+        { text: "Quedándose en el lugar sin prestar atención", correct: false },
+        { text: "Caminando en orden, en silencio y siguiendo las rutas de evacuación señalizadas", correct: true }
       ]
     },
     {
@@ -559,23 +559,23 @@
       ]
     },
     {
-      q: "¿Qué objetivo principal tiene practicar simulacros de sismo periódicamente en San Juan?",
+      q: "4. ¿Qué objetivo principal tiene practicar simulacros de sismo periódicamente en San Juan?",
       options: [
-        { text: "Generar memoria muscular y saber cómo actuar con calma ante el peligro", correct: true },
         { text: "Tener una excusa para suspender las clases o el trabajo", correct: false },
-        { text: "probar si los teléfonos celulares tienen batería", correct: false }
+        { text: "Generar memoria muscular y saber cómo actuar con calma ante el peligro", correct: true },
+        { text: "Probar si los teléfonos celulares tienen batería", correct: false }
       ]
     },
     {
-      q: "Si estás en una zona escolar y suena la alarma de simulacro, ¿cuál es el rol del docente o adulto guía?",
+      q: "5. Si estás en una zona escolar y suena la alarma de simulacro, ¿cuál es el rol del docente o adulto guía?",
       options: [
-        { text: "Guiar al grupo ordenadamente hacia la zona de seguridad establecida", correct: true },
         { text: "Quedarse en el aula cerrando las ventanas con calma", correct: false },
-        { text: "Salir corriendo antes que los demás", correct: false }
+        { text: "Salir corriendo antes que los demás", correct: false },
+        { text: "Guiar al grupo ordenadamente hacia la zona de seguridad establecida", correct: true }
       ]
     },
     {
-      q: "¿Por qué está estrictamente prohibido usar los ascensores durante un sismo o simulacro?",
+      q: "6. ¿Por qué está estrictamente prohibido usar los ascensores durante un sismo o simulacro?",
       options: [
         { text: "Porque pueden quedar sin energía eléctrica, fallar o bloquearse con el movimiento", correct: true },
         { text: "Porque consumen mucha electricidad", correct: false },
@@ -583,23 +583,23 @@
       ]
     },
     {
-      q: "Una vez finalizado el temblor principal en un simulacro, ¿qué precaución se debe tener antes de levantarse?",
+      q: "7. Una vez finalizado el temblor principal en un simulacro, ¿qué precaución se debe tener antes de levantarse?",
       options: [
-        { text: "Esperar a que cese el movimiento por completo y verificar que no caigan objetos", correct: true },
         { text: "Salir corriendo de inmediato sin mirar arriba", correct: false },
+        { text: "Esperar a que cese el movimiento por completo y verificar que no caigan objetos", correct: true },
         { text: "Ponerse a saltar para probar el suelo", correct: false }
       ]
     },
     {
-      q: "¿Qué institución científica nacional en Argentina estudia y registra la actividad sísmica, con sede en San Juan?",
+      q: "8. ¿Qué institución científica nacional en Argentina estudia y registra la actividad sísmica, con sede en San Juan?",
       options: [
-        { text: "El INPRES (Instituto Nacional de Prevención Sísmica)", correct: true },
         { text: "La oficina meteorológica zonal", correct: false },
-        { text: "El ministerio de economía provincial", correct: false }
+        { text: "El ministerio de economía provincial", correct: false },
+        { text: "El INPRES (Instituto Nacional de Prevención Sísmica)", correct: true }
       ]
     },
     {
-      q: "Si en medio de un sismo estás cocinando y tienes fuego encendido, ¿qué debes hacer si es seguro?",
+      q: "9. Si en medio de un sismo estás cocinando y tienes fuego encendido, ¿qué debes hacer si es seguro?",
       options: [
         { text: "Apagar el anafe o gas inmediatamente y luego buscar protección", correct: true },
         { text: "Dejar la sartén al fuego y salir corriendo", correct: false },
@@ -609,19 +609,19 @@
     {
       q: "10. ¿Por qué es importante fijar los muebles pesados y estanterías a las paredes en las zonas sísmicas?",
       options: [
-        { text: "Para evitar que se vuelquen y lesionen a las personas durante las sacudidas", correct: true },
         { text: "Para que la casa luzca más ordenada estéticamente", correct: false },
+        { text: "Para evitar que se vuelquen y lesionen a las personas durante las sacudidas", correct: true },
         { text: "Para que no acumulen polvo detrás", correct: false }
       ]
     },
 
-    // PARTE 2: EVACUACIÓN HÍDRICA (11 a 20)
+    // PARTE 2: HÍDRICA (11 a 20)
     {
       q: "11. Estás en tu casa y comienza una rápida inundación hídrica, ¿qué acción debes realizar de inmediato?",
       options: [
-        { text: "Desconectar la llave general de electricidad y gas antes de evacuar", correct: true },
         { text: "Quedarte acostado esperando a que el agua baje sola", correct: false },
-        { text: "Intentar lavar los pisos para que no se ensucien", correct: false }
+        { text: "Intentar lavar los pisos para que no se ensucien", correct: false },
+        { text: "Desconectar la llave general de electricidad y gas antes de evacuar", correct: true }
       ]
     },
     {
@@ -635,8 +635,8 @@
     {
       q: "13. ¿Hacia dónde debes dirigirte obligatoriamente al evacuar por una crecida de agua o desborde?",
       options: [
-        { text: "Hacia zonas altas o puntos de encuentro seguros establecidos", correct: true },
         { text: "Hacia el sótano o garaje subterráneo de la cuadra", correct: false },
+        { text: "Hacia zonas altas o puntos de encuentro seguros establecidos", correct: true },
         { text: "Hacia la orilla del canal para ver la crecida", correct: false }
       ]
     },
@@ -651,24 +651,24 @@
     {
       q: "15. Si ocurre una emergencia hídrica combinada con un sismo fuerte, ¿qué precaución extra es vital?",
       options: [
-        { text: "Alejarse de inmediato de cauces de ríos secos, zanjones y zonas bajas", correct: true },
         { text: "Refugiarse debajo de un puente sobre un arroyo", correct: false },
-        { text: "Entrar rápidamente a una casa de adobe antigua", correct: false }
+        { text: "Entrar rápidamente a una casa de adobe antigua", correct: false },
+        { text: "Alejarse de inmediato de cauces de ríos secos, zanjones y zonas bajas", correct: true }
       ]
     },
     {
       q: "16. ¿Qué entidad oficial emite las alertas y directivas ante emergencias hídricas y tormentas severas?",
       options: [
-        { text: "Protección Civil y Defensa Civil", correct: true },
         { text: "Una empresa de colectivos urbanos", correct: false },
+        { text: "Protección Civil y Defensa Civil", correct: true },
         { text: "Los clubes deportivos locales", correct: false }
       ]
     },
     {
       q: "17. Si el agua comienza a ingresar a tu hogar alcanzando los enchufes bajos, ¿por qué es peligroso?",
       options: [
-        { text: "Porque se corre un riesgo muy alto de electrocución", correct: true },
         { text: "Porque se arruinan los zócalos de madera", correct: false },
+        { text: "Porque se corre un riesgo muy alto de electrocución", correct: true },
         { text: "Porque se apagan todas las estrellas del cielo", correct: false }
       ]
     },
@@ -683,16 +683,16 @@
     {
       q: "19. ¿Por qué los niños nunca deben jugar cerca de canales, zanjones o desagües durante o después de llover?",
       options: [
-        { text: "Porque las corrientes ocultas y la fuerza del agua son extremadamente peligrosas y traicioneras", correct: true },
         { text: "Porque se pueden manchar la ropa nueva", correct: false },
-        { text: "Porque está prohibido por los vecinos", correct: false }
+        { text: "Porque está prohibido por los vecinos", correct: false },
+        { text: "Porque las corrientes ocultas y la fuerza del agua son extremadamente peligrosas y traicioneras", correct: true }
       ]
     },
     {
       q: "20. ¿Cuál es el objetivo fundamental de practicar simulacros y conocer estas medidas de evacuación?",
       options: [
-        { text: "Salvar vidas y actuar de manera ordenada y segura ante situaciones críticas", correct: true },
         { text: "Ganar premios en la escuela", correct: false },
+        { text: "Salvar vidas y actuar de manera ordenada y segura ante situaciones críticas", correct: true },
         { text: "Poder contar historias de miedo a los amigos", correct: false }
       ]
     }
@@ -706,7 +706,6 @@
     const sectionTitle = document.getElementById('trivia-section-title');
     if (!qBox || !optBox || !sectionTitle) return;
 
-    // Actualizar subtítulo según la etapa (1 a 10 sismos, 11 a 20 hídrica)
     if (currentTriviaIndex < 10) {
       sectionTitle.textContent = "Parte 1: Simulacros y Prevención Sísmica (Preguntas 1 a 10)";
       sectionTitle.style.color = "#ea580c";
@@ -737,7 +736,7 @@
             loadTriviaQuestion();
           } else {
             unlockTriviaBadge();
-            alert("¡Felicitaciones! Has completado con éxito la trivia completa de 20 preguntas (Sismos e Hídrica) y ganado la insignia de experto.");
+            alert("¡Felicitaciones! Has completado con éxito la trivia completa de 20 preguntas y ganado la insignia de experto.");
             currentTriviaIndex = 0;
             loadTriviaQuestion();
             switchScreen('main-menu');
